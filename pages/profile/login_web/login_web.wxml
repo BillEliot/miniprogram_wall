@@ -1,0 +1,36 @@
+<van-dialog id="van-dialog" />
+<view class="container">
+  <van-cell-group>
+    <van-field
+      value="{{ email.value }}"
+      label="E-mail"
+      placeholder="请输入E-mail"
+      error="{{ email.error }}"
+      error-message="{{ email.error_message }}"
+      required
+      bind:change="onChange_email"
+    />
+    <van-field
+      value="{{ password.value }}"
+      label="密码"
+      placeholder="请输入密码"
+      password
+      error="{{ password.error }}"
+      error-message="{{ password.error_message }}"
+      required
+      bind:change="onChange_password"
+    />
+    <van-field
+      value="{{ password2.value }}"
+      label="密码"
+      placeholder="请输入密码"
+      password
+      error="{{ password2.error }}"
+      error-message="{{ password2.error_message }}"
+      required
+      bind:change="onChange_password2"
+    />
+  </van-cell-group>
+  <van-divider hairline />
+  <van-button type="primary" size="large" bindtap="login_web">绑定并登录</van-button>
+</view>

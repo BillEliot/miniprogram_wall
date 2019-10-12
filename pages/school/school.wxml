@@ -1,0 +1,6 @@
+<view>
+  <van-grid square clickable gutter="{{ 100 }}">
+    <van-grid-item icon="hot-o" text="校园热点" link-type="navigateTo" url="/pages/school/hot/hot" />
+    <van-grid-item icon="smile-comment-o" text="讲座动态" link-type="navigateTo" url="/pages/school/lecture/lecture" />
+  </van-grid>
+</view>

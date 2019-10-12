@@ -1,0 +1,10 @@
+<view class="warpper">
+  <image class="warpper-image" mode='widthFix' src="/assets/images/banner.png"></image>
+  <view class="warpper-title">
+    <view class="warpper-head">{{ hot.title }}</view>
+    <view class="warpper-subhead">{{ hot.date }}</view>
+  </view>
+</view>
+<view class="container">
+  <wemark md="{{ hot.content }}" link highlight type="wemark"></wemark>
+</view>

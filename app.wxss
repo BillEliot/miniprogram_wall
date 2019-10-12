@@ -1,0 +1,43 @@
+.container {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.text-center {
+  text-align: center;
+}
+.text-left {
+  text-align: left;
+}
+.warpper {
+  height: 100%; 
+  position: relative;
+}
+.warpper-image {
+  width: 100%;
+}
+.warpper-title {
+  position: absolute;
+  left: 0;
+  top: 30%;
+  right: 0;
+  margin: auto;
+  text-align: center;
+}
+.warpper-head {
+  font-size: 86rpx;
+}
+.warpper-subhead {
+  font-size: 28rpx;
+  line-height: 12rpx;
+  color: gray;
+  margin-bottom: 10rpx;
+}
+.bio {
+  font-size: 24rpx;
+  color: gray;
+}
+.tag {
+  margin-right: 10rpx;
+}

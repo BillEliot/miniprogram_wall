@@ -1,0 +1,27 @@
+<view class="warpper">
+  <image class="warpper-image" mode='widthFix' src="/assets/images/banner.png"></image>
+  <view class="warpper-title">
+    <view class="warpper-head">校园热点</view>
+    <view class="warpper-subhead">吃第一口瓜～</view>
+  </view>
+</view>
+<van-divider hairline />
+<view class="container">
+  <van-cell
+    is-link
+    size="large"
+    wx:for="{{ hots }}"
+    wx:key="{{ item.key }}"
+    value="{{ item.title }}"
+    label="{{ item.date }}"
+    link-type="navigateTo"
+    url="{{ '/pages/school/hot/hot_detail/hot_detail?id=' + item.key }}"
+  >
+    <view slot="title">
+      <image mode="aspectFit" class="avatar" src="{{ app.globalData.url + item.publisher.avatar }}"></image>
+      <view class="base">
+        <view class="base-nickname">{{ item.publisher.nickname }}</view>
+      </view>
+    </view>
+  </van-cell>
+</view>

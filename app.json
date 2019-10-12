@@ -1,0 +1,66 @@
+{
+  "pages": [
+    "pages/article/article",
+    "pages/wall/wall",
+    "pages/profile/profile",
+    "pages/school/school",
+    "pages/school/hot/hot",
+    "pages/school/lecture/lecture",
+    "pages/profile/login/login",
+    "pages/profile/register/register",
+    "pages/school/hot/hot_detail/hot_detail",
+    "pages/profile/login_web/login_web",
+    "pages/article/article_detail/article_detail",
+    "pages/wall/deal/deal",
+    "pages/wall/help/help",
+    "pages/wall/lose/lose",
+    "pages/wall/love/love"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle": "black"
+  },
+  "sitemapLocation": "sitemap.json",
+  "usingComponents": {
+    "van-tabbar": "miniprogram_npm/vant-weapp/tabbar/index",
+    "van-tabbar-item": "miniprogram_npm/vant-weapp/tabbar-item/index",
+    "van-grid": "miniprogram_npm/vant-weapp/grid/index",
+    "van-grid-item": "miniprogram_npm/vant-weapp/grid-item/index",
+    "van-card": "miniprogram_npm/vant-weapp/card/index",
+    "van-divider": "miniprogram_npm/vant-weapp/divider/index",
+    "van-tag": "miniprogram_npm/vant-weapp/tag/index",
+    "van-icon": "miniprogram_npm/vant-weapp/icon/index",
+    "van-button": "miniprogram_npm/vant-weapp/button/index",
+    "van-picker": "miniprogram_npm/vant-weapp/picker/index",
+    "van-search": "miniprogram_npm/vant-weapp/search/index",
+    "van-popup": "miniprogram_npm/vant-weapp/popup/index",
+    "van-cell": "miniprogram_npm/vant-weapp/cell/index",
+    "van-cell-group": "miniprogram_npm/vant-weapp/cell-group/index",
+    "van-field": "miniprogram_npm/vant-weapp/field/index",
+    "van-toast": "miniprogram_npm/vant-weapp/toast/index",
+    "van-dialog": "miniprogram_npm/vant-weapp/dialog/index"
+  },
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/article/article",
+        "text": "大佬杂谈"
+      },
+      {
+        "pagePath": "pages/wall/wall",
+        "text": "墙墙"
+      },
+      {
+        "pagePath": "pages/school/school",
+        "text": "校园动态"
+      },
+      {
+        "pagePath": "pages/profile/login/login",
+        "text": "我"
+      }
+    ]
+  }
+}

@@ -1,0 +1,10 @@
+<view>
+  <van-grid square clickable gutter="{{ 100 }}">
+    <van-grid-item icon="like-o" text="表白墙" bindtap="onLove" />
+    <van-grid-item icon="gift-o" text="失物墙" bindtap="onLose" />
+  </van-grid>
+  <van-grid square clickable gutter="{{ 100 }}">
+    <van-grid-item icon="bag-o" text="二手墙"  bindtap="onDeal" />
+    <van-grid-item icon="thumb-circle-o" text="求助墙" bindtap="onHelp" />
+  </van-grid>
+</view>

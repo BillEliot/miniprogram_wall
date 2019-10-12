@@ -1,0 +1,34 @@
+<view class="warpper">
+  <image class="warpper-image" mode='widthFix' src="/assets/images/banner.png"></image>
+  <view class="warpper-title">
+    <view class="warpper-head">失物墙</view>
+    <view class="warpper-subhead">失物们都回来吧～</view>
+    <van-button round type="info" size="small">发布失物</van-button>
+  </view>
+</view>
+<van-divider hairline />
+<view class="container">
+  <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="FlipPickerDate">丢失时间</van-button>
+  | <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)">发布时间</van-button>
+  | <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)">是否找到</van-button>
+  <van-search
+    value="{{ value }}"
+    placeholder="搜索物品"
+    use-action-slot
+    shape="round"
+    bind:search="onSearch"
+  >
+    <view slot="action" bind:tap="onSearch">搜索</view>
+  </van-search>
+  <scroll-view scroll-y="true" style="height: 800rpx;">
+    <van-card
+      num="2"
+      price="2.00"
+      desc="描述信息"
+      title="商品标题"
+      thumb="{{ imageURL }}"
+    >
+      
+    </van-card>
+  </scroll-view>
+</view>

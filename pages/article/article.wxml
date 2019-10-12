@@ -1,0 +1,62 @@
+ <van-popup
+  show="{{ show_date }}"
+  position="bottom"
+  bind:close="onClosePicker_date"
+  >
+  <van-picker columns="{{ columns_date }}" bind:change="onChange" />
+</van-popup>
+
+<view class="warpper">
+  <image class="warpper-image" mode='widthFix' src="/assets/images/banner.png"></image>
+  <view class="warpper-title">
+    <view class="warpper-head">大佬杂谈</view>
+    <view class="warpper-subhead">都是些有用的文章哦～</view>
+    <van-button round type="info" size="small">发布文章</van-button>
+  </view>
+</view>
+<van-divider hairline />
+<view class="container">
+  <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="FlipPickerDate">时间</van-button>
+  | <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)">赞数</van-button>
+  | <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)">硬币数</van-button>
+  <van-search
+    value="{{ value }}"
+    placeholder="搜索文章 / 用户"
+    use-action-slot
+    shape="round"
+    bind:search="onSearch"
+  >
+    <view slot="action" bind:tap="onSearch">搜索</view>
+  </van-search>
+
+  <text class="summary">共有{{ numArticle }}篇文章</text>
+  <scroll-view scroll-y="true" style="height: 800rpx;">
+    <van-card
+      wx:for="{{ articles }}"
+      wx:key="item.id"
+      title="{{ item.title }}"
+      desc="{{ item.content }}"
+      class="article-card"
+      bindtap="onArticle"
+      data-id="{{ item.id }}"
+    >
+      <view slot="thumb">
+        <image class="avatar" mode="scaleToFill" src="{{ app.globalData.url + item.user.avatar }}" bindtap="onUser" data-uid="{{ item.user.id }}"></image>
+        <view>
+          <text>{{ item.user.nickname }}</text>
+        </view>
+      </view>
+      <view slot="tags">
+        <van-tag wx:for="{{ item.tags }}" wx:key="*this" type="primary" class="tag">{{ item }}</van-tag>
+      </view>
+      <view slot="bottom" class="footer">
+        <view>
+          <van-button type="primary" size="mini" bindtap="onArticle(item.id)">查看</van-button>
+          需要硬币：{{ item.neededCoin }}
+          | <van-icon name="good-job-o" /> {{ item.thumbsUp }}
+          | <van-icon name="comment-o" /> {{ item.comments }}
+        </view>
+      </view>
+    </van-card>
+  </scroll-view>
+</view>

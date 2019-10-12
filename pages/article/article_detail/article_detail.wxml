@@ -1,0 +1,45 @@
+<view class="warpper">
+  <image class="warpper-image" mode='widthFix' src="/assets/images/banner.png"></image>
+  <view class="warpper-title">
+    <view class="warpper-head">{{ article.title }}</view>
+    <view class="warpper-subhead">发布时间：{{ article.publicDate }}</view>
+    <view class="warpper-subhead" style="margin-top: 20rpx">最后编辑：{{ article.editDate }}</view>
+  </view>
+</view>
+
+<view class="container text-center">
+  <image mode="scaleToFill" src="{{ app.globalData.url + article.user.avatar }}" class="avatar" />
+  <view>{{ article.user.nickname }}</view>
+  <van-tag wx:for="{{ article.user.auth }}" wx:key="*this" type="primary" class="tag">{{ item }}</van-tag>
+  <view class="bio">{{ article.user.bio }}</view>
+  <van-divider dashed />
+  <view class="text-left">
+    <van-tag wx:for="{{ article.tags }}" wx:key="*this" type="success" class="tag">{{ item }}</van-tag>
+  </view>
+  <wemark md="{{ article.content }}" link highlight type="wemark"></wemark>
+  <van-divider dashed />
+
+  <view>共{{ article.comments.length }}条评论</view>
+  <scroll-view scroll-y="true" style="height: 500rpx;">
+    <view wx:for="{{ article.comments }}" wx:key="{{ item.id }}" class="comment text-left">
+      <view class='comment_cell'>
+          <image mode="scaleToFill" src="{{ app.globalData.url + item.avatar }}" class='comment_avatar' />
+          <view class='comment_right'>
+            <view class='comment_nickname'>{{ item.nickname }}</view>
+            <view class='comment_content'>{{ item.content }}</view>
+            <view class="comment_date">{{ item.date }}</view>
+          </view>
+      </view>
+    </view>
+  </scroll-view>
+  <van-divider dashed />
+  <view class="comment text-left">
+    <view class='comment_cell'>
+        <image mode="scaleToFill" src="{{ app.globalData.url + article.user.avatar }}" class='comment_avatar' />
+        <view class='comment_right'>
+          <view class='comment_nickname'>Eiot</view>
+          <textarea placeholder="评论些什么吧～" class="comment_box" />
+        </view>
+    </view>
+  </view>
+</view>

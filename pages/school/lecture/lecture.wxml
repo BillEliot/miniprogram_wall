@@ -1,0 +1,26 @@
+<view class="warpper">
+  <image class="warpper-image" mode='widthFix' src="/assets/images/banner.png"></image>
+  <view class="warpper-title">
+    <view class="warpper-head">讲座动态</view>
+    <view class="warpper-subhead">抢在第一位～</view>
+  </view>
+</view>
+<van-divider hairline />
+<view class="container">
+  <van-cell
+    size="large"
+    clickable
+    wx:for="{{ lectures }}"
+    wx:key="{{ item.key }}"
+    label="{{ item.date }}"
+    value="{{ item.title }}"
+  >
+    <view slot="title">
+      <view>{{ item.lecturer }}</view>
+      <van-tag wx:if="{{ item.state == 'wait' }}" type="primary">未开始</van-tag>
+      <van-tag wx:if="{{ item.state == 'running' }}" type="primary">success</van-tag>
+      <van-tag wx:if="{{ item.state == 'done' }}">已结束</van-tag>
+      <view class="address">{{ item.address }}</view>
+    </view>
+  </van-cell>
+</view>
