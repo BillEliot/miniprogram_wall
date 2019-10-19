@@ -1,18 +1,42 @@
-// pages/wall/help/help.js
+const app = getApp()
+
 Page({
 
   /**
    * Page initial data
    */
   data: {
-
+    app: app,
+    filterType: 'date',
+    order: 'reverse',
+    index: 0,
+    helpList: [],
+    numHelp: 0
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
+    let _this = this
+    wx.request({
+      url: app.globalData.url + '/api/getHelpList',
+      method: 'post',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        filterType: this.data.filterType,
+        order: this.data.order,
+        index: this.data.index,
+      },
+      success: function (res) {
+        _this.setData({
+          helpList: res.data.list,
+          numHelp: res.data.total
+        })
+      }
+    })
   },
 
   /**

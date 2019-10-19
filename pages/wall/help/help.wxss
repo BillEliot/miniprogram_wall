@@ -1,1 +1,9 @@
-/* pages/wall/help/help.wxss */
+.article-card {
+  margin: 10rpx;
+}
+.avatar {
+  border-radius: 50%;
+  width: 100rpx;
+  height:100rpx;
+  top: 0
+}

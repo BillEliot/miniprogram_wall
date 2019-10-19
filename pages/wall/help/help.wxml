@@ -1,2 +1,33 @@
-<!--pages/wall/help/help.wxml-->
-<text>pages/wall/help/help.wxml</text>
+<view class="warpper">
+  <image class="warpper-image" mode='widthFix' src="https://s2.ax1x.com/2019/10/19/KmitZq.png"></image>
+  <view class="warpper-title">
+    <view class="warpper-head">求助墙</view>
+    <view class="warpper-subhead">有问题找小伙伴们哦～</view>
+    <van-button round type="info" size="small">发布求助</van-button>
+  </view>
+</view>
+<van-divider hairline />
+<view class="container">
+  <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="FlipPickerDate">时间</van-button>
+  <van-divider hairline />
+  <view class="summary">共有{{ numHelp }}个求助</view>
+  <scroll-view scroll-y="true" style="height: 800rpx;">
+    <van-card
+      wx:for="{{ helpList }}"
+      wx:key="item.id"
+      title="{{ item.title }}"
+      desc="{{ item.content }}"
+      class="article-card"
+    >
+      <view slot="thumb">
+        <image class="avatar" mode="scaleToFill" src="{{ app.globalData.url + item.user.avatar }}" bindtap="onUser" data-uid="{{ item.user.id }}"></image>
+        <view>{{ item.user.nickname }}</view>
+      </view>
+      <view slot="bottom">
+        <view>{{ item.date }}</view>
+        <van-button type="primary" size="mini" bindtap="onArticle" data-id="{{ item.id }}">查看</van-button>
+        <van-icon name="comment-o" style="margin-left: 15rpx;" /> {{ item.comments }}
+      </view>
+    </van-card>
+  </scroll-view>
+</view>

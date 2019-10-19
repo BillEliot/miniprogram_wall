@@ -34,6 +34,13 @@
   color: gray;
   margin-bottom: 10rpx;
 }
+.summary {
+  font-size: 24rpx;
+  color: gray;
+}
+.nickname {
+  font-weight: bold;
+}
 .bio {
   font-size: 24rpx;
   color: gray;

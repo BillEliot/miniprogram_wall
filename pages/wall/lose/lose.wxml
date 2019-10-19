@@ -1,5 +1,5 @@
 <view class="warpper">
-  <image class="warpper-image" mode='widthFix' src="/assets/images/banner.png"></image>
+  <image class="warpper-image" mode='widthFix' src="https://s2.ax1x.com/2019/10/19/KmitZq.png"></image>
   <view class="warpper-title">
     <view class="warpper-head">失物墙</view>
     <view class="warpper-subhead">失物们都回来吧～</view>
@@ -22,13 +22,19 @@
   </van-search>
   <scroll-view scroll-y="true" style="height: 800rpx;">
     <van-card
-      num="2"
-      price="2.00"
-      desc="描述信息"
-      title="商品标题"
-      thumb="{{ imageURL }}"
+      wx:for="{{ loseList }}"
+      wx:key="{{ item.id }}"
+      desc="{{ item.description }}"
+      title="{{ item.name }}"
+      thumb="{{ app.globalData.url + item.cover }}"
     >
-      
+      <view slot="tags">
+        <van-tag wx:if="{{ item.isFound }}" round type="success">已找到</van-tag>
+        <van-tag wx:if="{{ !item.isFound }}" round type="danger">未找到</van-tag>
+      </view>
+      <view slot="bottom">
+        <view>丢失时间：{{ item.loseDate }}</view>
+      </view>
     </van-card>
   </scroll-view>
 </view>

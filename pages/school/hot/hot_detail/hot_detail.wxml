@@ -1,5 +1,5 @@
 <view class="warpper">
-  <image class="warpper-image" mode='widthFix' src="/assets/images/banner.png"></image>
+  <image class="warpper-image" mode='widthFix' src="https://s2.ax1x.com/2019/10/19/KmitZq.png"></image>
   <view class="warpper-title">
     <view class="warpper-head">{{ hot.title }}</view>
     <view class="warpper-subhead">{{ hot.date }}</view>

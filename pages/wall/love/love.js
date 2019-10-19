@@ -1,18 +1,51 @@
-// pages/wall/love/love.js
+const app = getApp()
+
 Page({
 
   /**
    * Page initial data
    */
   data: {
-
+    app: app,
+    show_more: false,
+    filterType: 'date',
+    order: 'reverse',
+    index: 0,
+    loveList: [],
+    moreList: []
   },
 
+  more: function (e) {
+    this.setData({ 
+      moreList: e.currentTarget.dataset.userto,
+      show_more: true
+    })
+  },
+  onClose_more: function () {
+    this.setData({ show_more: false })
+  },
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
+    let _this = this
+    wx.request({
+      url: app.globalData.url + '/api/getLoveList',
+      method: 'post',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        filterType: this.data.filterType,
+        order: this.data.order,
+        index: this.data.index
+      },
+      success: function (res) {
+        _this.setData({
+          loveList: res.data.info
+        })
+      }
+    })
   },
 
   /**

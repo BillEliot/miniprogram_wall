@@ -7,7 +7,7 @@
 </van-popup>
 
 <view class="warpper">
-  <image class="warpper-image" mode='widthFix' src="/assets/images/banner.png"></image>
+  <image class="warpper-image" mode='widthFix' src="https://s2.ax1x.com/2019/10/19/KmitZq.png"></image>
   <view class="warpper-title">
     <view class="warpper-head">大佬杂谈</view>
     <view class="warpper-subhead">都是些有用的文章哦～</view>
@@ -37,8 +37,6 @@
       title="{{ item.title }}"
       desc="{{ item.content }}"
       class="article-card"
-      bindtap="onArticle"
-      data-id="{{ item.id }}"
     >
       <view slot="thumb">
         <image class="avatar" mode="scaleToFill" src="{{ app.globalData.url + item.user.avatar }}" bindtap="onUser" data-uid="{{ item.user.id }}"></image>
@@ -51,7 +49,7 @@
       </view>
       <view slot="bottom" class="footer">
         <view>
-          <van-button type="primary" size="mini" bindtap="onArticle(item.id)">查看</van-button>
+          <van-button type="primary" size="mini" bindtap="onArticle" data-id="{{ item.id }}">查看</van-button>
           需要硬币：{{ item.neededCoin }}
           | <van-icon name="good-job-o" /> {{ item.thumbsUp }}
           | <van-icon name="comment-o" /> {{ item.comments }}

@@ -1,18 +1,38 @@
-// pages/wall/lose/lose.js
+const app = getApp()
+
 Page({
 
   /**
    * Page initial data
    */
   data: {
-
+    app: app,
+    filterType: 'date',
+    order: 'reverse',
+    index: 0,
+    loseList: []
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-
+    let _this = this
+    wx.request({
+      url: app.globalData.url + '/api/getLoseList',
+      method: 'post',
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      data: {
+        filterType: this.data.filterType,
+        order: this.data.order,
+        index: this.data.index,
+      },
+      success: function (res) {
+        _this.setData({ loseList: res.data.info })
+      }
+    })
   },
 
   /**
