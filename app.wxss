@@ -48,3 +48,37 @@
 .tag {
   margin-right: 10rpx;
 }
+.comment {
+  height: 50px;
+  width: 100%;
+  margin-bottom: 50rpx;
+}
+.comment_cell {
+  width: 100%;
+  height: 100px;
+  margin-bottom: 10px;
+  display: flex;
+}
+.comment_right {
+  margin-left: 20rpx;
+}
+.comment_avatar {
+  width: 60rpx;
+  height: 60rpx;
+}
+.comment_nickname {
+  font-size: 32rpx;
+}
+.comment_content {
+  color: gray;
+  font-size: 24rpx;
+}
+.comment_date {
+  color: lightgray;
+  font-size: 20rpx;
+}
+.comment_box {
+  font-size: 24rpx;
+  border: 1px solid lightgray;
+  height: 100rpx;
+}

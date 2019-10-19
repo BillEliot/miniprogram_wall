@@ -14,7 +14,10 @@
     "pages/wall/deal/deal",
     "pages/wall/help/help",
     "pages/wall/lose/lose",
-    "pages/wall/love/love"
+    "pages/wall/love/love",
+    "pages/wall/help/help_detail/help_detail",
+    "pages/wall/deal/deal_detail/deal_detail",
+    "pages/wall/lose/lose_detail/lose_detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

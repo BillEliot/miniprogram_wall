@@ -17,6 +17,8 @@
       wx:key="item.id"
       title="{{ item.title }}"
       desc="{{ item.content }}"
+      bindtap="onHelp"
+      data-id="{{ item.id }}"
       class="article-card"
     >
       <view slot="thumb">
@@ -25,7 +27,6 @@
       </view>
       <view slot="bottom">
         <view>{{ item.date }}</view>
-        <van-button type="primary" size="mini" bindtap="onArticle" data-id="{{ item.id }}">查看</van-button>
         <van-icon name="comment-o" style="margin-left: 15rpx;" /> {{ item.comments }}
       </view>
     </van-card>

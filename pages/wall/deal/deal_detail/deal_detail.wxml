@@ -1,0 +1,63 @@
+<view class="warpper">
+  <image class="warpper-image" mode='widthFix' src="https://s2.ax1x.com/2019/10/19/KmitZq.png"></image>
+  <view class="warpper-title">
+    <view class="warpper-head">二手交易</view>
+    <view class="warpper-subhead">愉快的交易呀～</view>
+  </view>
+</view>
+
+<view class="container">
+  <van-cell-group>
+    <van-cell title="最低价" value="¥{{ deal.price }}" />
+    <van-cell>
+      <view slot="title">
+        新度<van-rate style="float: right;" value="{{ deal.new }}" />
+      </view>
+    </van-cell>
+    <van-cell wx:if="{{ deal.isSold }}" title="是否售出" value="已售出" />
+    <van-cell wx:else title="是否售出" value="未售出" />
+  </van-cell-group>
+
+  <van-divider />
+  <view class="text-center">
+    <image mode="scaleToFill" src="{{ app.globalData.url + deal.user.avatar }}" class="avatar" />
+    <view>{{ deal.user.nickname }}</view>
+    <van-tag wx:for="{{ deal.user.auth }}" wx:key="*this" type="primary" class="tag">{{ item }}</van-tag>
+    <view class="bio">{{ deal.user.bio }}</view>
+
+    <view style="margin-top: 20rpx;">
+      <view class="name">{{ deal.name }}</view>
+      <view class="content">{{ deal.description }}</view>
+    </view>
+
+    <scroll-view scroll-x style="white-space: nowrap; margin-top: 20rpx;">
+      <view wx:for="{{ deal.images }}" wx:key="*this" style="display: inline-block;">
+        <image mode="scaleToFill" src="{{ app.globalData.url + item }}" style="padding: 10rpx;" />
+      </view>
+    </scroll-view>
+
+    <view>共{{ deal.comments.length }}条评论</view>
+    <scroll-view scroll-y="true" style="height: 500rpx;">
+      <view wx:for="{{ deal.comments }}" wx:key="{{ item.id }}" class="comment text-left">
+        <view class='comment_cell'>
+            <image mode="scaleToFill" src="{{ app.globalData.url + item.avatar }}" class='comment_avatar' />
+            <view class='comment_right'>
+              <view class='comment_nickname'>{{ item.nickname }}</view>
+              <view class='comment_content'>{{ item.content }}</view>
+              <view class="comment_date">{{ item.date }}</view>
+            </view>
+        </view>
+      </view>
+    </scroll-view>
+    <van-divider dashed />
+    <view class="comment text-left">
+      <view class='comment_cell'>
+          <image mode="scaleToFill" src="{{ app.globalData.url + deal.user.avatar }}" class='comment_avatar' />
+          <view class='comment_right'>
+            <view class='comment_nickname'>Eiot</view>
+            <textarea placeholder="评论些什么吧～" class="comment_box" />
+          </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -36,6 +36,8 @@
       wx:key="item.id"
       title="{{ item.title }}"
       desc="{{ item.content }}"
+      bindtap="onArticle"
+      data-id="{{ item.id }}"
       class="article-card"
     >
       <view slot="thumb">
@@ -49,7 +51,6 @@
       </view>
       <view slot="bottom" class="footer">
         <view>
-          <van-button type="primary" size="mini" bindtap="onArticle" data-id="{{ item.id }}">查看</van-button>
           需要硬币：{{ item.neededCoin }}
           | <van-icon name="good-job-o" /> {{ item.thumbsUp }}
           | <van-icon name="comment-o" /> {{ item.comments }}

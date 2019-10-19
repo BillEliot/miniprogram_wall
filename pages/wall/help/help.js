@@ -14,6 +14,12 @@ Page({
     numHelp: 0
   },
 
+  onHelp: function (e) {
+    wx.navigateTo({
+      url: '/pages/wall/help/help_detail/help_detail?id=' + e.currentTarget.dataset.id
+    })
+  },
+
   /**
    * Lifecycle function--Called when page load
    */

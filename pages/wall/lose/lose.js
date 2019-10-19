@@ -13,6 +13,12 @@ Page({
     loseList: []
   },
 
+  onLose: function (e) {
+    wx.navigateTo({
+      url: '/pages/wall/lose/lose_detail/lose_detail?id=' + e.currentTarget.dataset.id
+    })
+  },
+
   /**
    * Lifecycle function--Called when page load
    */

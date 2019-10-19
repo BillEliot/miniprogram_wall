@@ -7,16 +7,7 @@ Page({
    */
   data: {
     app: app,
-    filterType: 'date',
-    order: 'reverse',
-    index: 0,
-    deals: []
-  },
-
-  onDeal: function (e) {
-    wx.navigateTo({
-      url: '/pages/wall/deal/deal_detail/deal_detail?id=' + e.currentTarget.dataset.id
-    })
+    help: null
   },
 
   /**
@@ -25,20 +16,21 @@ Page({
   onLoad: function (options) {
     let _this = this
     wx.request({
-      url: app.globalData.url + '/api/getDealList',
+      url: app.globalData.url + '/api/getHelpDetail',
       method: 'post',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
       },
       data: {
-        filterType: this.data.filterType,
-        order: this.data.order,
-        index: this.data.index
+        id: options.id
       },
-      success: function (res) {
-        _this.setData({
-          deals: res.data.info
-        })
+      success(res) {
+        if (res.data == 1) {
+          Toast.fail('未知错误')
+        }
+        else {
+          _this.setData({ help: res.data })
+        }
       }
     })
   },

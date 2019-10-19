@@ -27,6 +27,8 @@
       desc="{{ item.description }}"
       title="{{ item.name }}"
       thumb="{{ app.globalData.url + item.cover }}"
+      bindtap="onLose"
+      data-id="{{ item.id }}"
     >
       <view slot="tags">
         <van-tag wx:if="{{ item.isFound }}" round type="success">已找到</van-tag>

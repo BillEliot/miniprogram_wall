@@ -1,0 +1,59 @@
+<view class="warpper">
+  <image class="warpper-image" mode='widthFix' src="https://s2.ax1x.com/2019/10/19/KmitZq.png"></image>
+  <view class="warpper-title">
+    <view class="warpper-head">(＞﹏＜)</view>
+    <view class="warpper-subhead">要尽快找回来啊～</view>
+  </view>
+</view>
+
+<view class="container">
+  <van-cell-group>
+  <van-cell title="发布时间" value="{{ lose.publicDate }}" />
+    <van-cell title="丢失日期" value="{{ lose.loseDate }}" />
+    <van-cell wx:if="{{ lose.isFound }}" title="是否找到" value="已找到" />
+    <van-cell wx:else title="是否找到" value="未找到" />
+  </van-cell-group>
+
+  <van-divider />
+  <view class="text-center">
+    <image mode="scaleToFill" src="{{ app.globalData.url + lose.user.avatar }}" class="avatar" />
+    <view>{{ lose.user.nickname }}</view>
+    <van-tag wx:for="{{ lose.user.auth }}" wx:key="*this" type="primary" class="tag">{{ item }}</van-tag>
+    <view class="bio">{{ lose.user.bio }}</view>
+
+    <view style="margin-top: 20rpx;">
+      <view class="name">{{ lose.name }}</view>
+      <view class="content">{{ lose.description }}</view>
+    </view>
+
+    <scroll-view scroll-x style="white-space: nowrap; margin-top: 20rpx;">
+      <view wx:for="{{ lose.images }}" wx:key="*this" style="display: inline-block;">
+        <image mode="scaleToFill" src="{{ app.globalData.url + item }}" style="padding: 10rpx;" />
+      </view>
+    </scroll-view>
+
+    <view>共{{ lose.comments.length }}条评论</view>
+    <scroll-view scroll-y="true" style="height: 500rpx;">
+      <view wx:for="{{ lose.comments }}" wx:key="{{ item.id }}" class="comment text-left">
+        <view class='comment_cell'>
+            <image mode="scaleToFill" src="{{ app.globalData.url + item.avatar }}" class='comment_avatar' />
+            <view class='comment_right'>
+              <view class='comment_nickname'>{{ item.nickname }}</view>
+              <view class='comment_content'>{{ item.content }}</view>
+              <view class="comment_date">{{ item.date }}</view>
+            </view>
+        </view>
+      </view>
+    </scroll-view>
+    <van-divider dashed />
+    <view class="comment text-left">
+      <view class='comment_cell'>
+          <image mode="scaleToFill" src="{{ app.globalData.url + lose.user.avatar }}" class='comment_avatar' />
+          <view class='comment_right'>
+            <view class='comment_nickname'>Eiot</view>
+            <textarea placeholder="评论些什么吧～" class="comment_box" />
+          </view>
+      </view>
+    </view>
+  </view>
+</view>
