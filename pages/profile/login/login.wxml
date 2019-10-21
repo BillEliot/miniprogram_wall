@@ -1,5 +1,0 @@
-<view class="container">
-  <van-button plain type="primary" size="large">登录</van-button>
-  <van-button plain type="info" size="large" bindtap="register">注册</van-button>
-  <van-button plain type="default" size="large" bindtap="login_web">使用官网账号登录</van-button>
-</view>

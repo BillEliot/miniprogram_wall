@@ -1,22 +1,65 @@
-// pages/profile/profile.js
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    app: app,
+    isLogin: false,
+    profile: null,
+    str_comments: [],
+    str_loves: [],
+    str_loses: [],
+    str_deals: [],
+    str_helps: []
   },
 
-  login: function () {
-    
+  register: function () {
+    wx.navigateTo({
+      url: '/pages/profile/register/register',
+    })
+  },
+  login_web: function () {
+    wx.navigateTo({
+      url: '/pages/profile/login_web/login_web',
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    if (app.globalData.user.openid) {
+      this.setData({ isLogin: true })
+      let _this = this
+      wx.request({
+        url: app.globalData.url + '/api/getUserProfile',
+        method: 'post',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        data: {
+          uid: app.globalData.user.uid
+        },
+        success: function (res) {
+          if (res.data != 1) {
+            _this.setData({
+              profile: res.data,
+              str_comments: JSON.stringify(res.data.comments),
+              str_loves: JSON.stringify(res.data.loves),
+              str_loses: JSON.stringify(res.data.loses),
+              str_deals: JSON.stringify(res.data.deals),
+              str_helps: JSON.stringify(res.data.helps)
+            })
+          }
+        }
+      })
+    }
+    else {
+      this.setData({ isLogin: false })
+    }
   },
 
   /**

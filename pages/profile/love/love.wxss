@@ -1,0 +1,23 @@
+.avatar {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+}
+.base {
+  margin-left: 25rpx;
+  display: inline-block;
+  position: absolute;
+  top: 15%;
+}
+.base-nickname {
+  font-size: 32rpx;
+}
+.text {
+  display: block;
+  font-size: 26rpx;
+  color: #999;
+  line-height: 26rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

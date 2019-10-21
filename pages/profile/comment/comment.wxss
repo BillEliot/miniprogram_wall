@@ -1,0 +1,14 @@
+.avatar {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+}
+.base {
+  margin-left: 25rpx;
+  display: inline-block;
+  position: absolute;
+  top: 15%;
+}
+.base-nickname {
+  font-size: 32rpx;
+}

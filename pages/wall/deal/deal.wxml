@@ -1,3 +1,40 @@
+ <!-- date -->
+ <van-popup show="{{ show_date }}" position="bottom" bind:close="flipPicker_date">
+  <van-picker
+    columns="{{ columns_date }}"
+    show-toolbar
+    bind:cancel="flipPicker_date"
+    bind:confirm="onConfirm_date"
+  />
+</van-popup>
+ <!-- new -->
+ <van-popup show="{{ show_new }}" position="bottom" bind:close="flipPicker_new">
+  <van-picker
+    columns="{{ columns_new }}"
+    show-toolbar
+    bind:cancel="flipPicker_new"
+    bind:confirm="onConfirm_new"
+  />
+</van-popup>
+ <!-- price -->
+ <van-popup show="{{ show_price }}" position="bottom" bind:close="flipPicker_price">
+  <van-picker
+    columns="{{ columns_price }}"
+    show-toolbar
+    bind:cancel="flipPicker_price"
+    bind:confirm="onConfirm_price"
+  />
+</van-popup>
+ <!-- isSold -->
+ <van-popup show="{{ show_isSold }}" position="bottom" bind:close="flipPicker_isSold">
+  <van-picker
+    columns="{{ columns_isSold }}"
+    show-toolbar
+    bind:cancel="flipPicker_isSold"
+    bind:confirm="onConfirm_isSold"
+  />
+</van-popup>
+
 <view class="warpper">
   <image class="warpper-image" mode='widthFix' src="https://s2.ax1x.com/2019/10/19/KmitZq.png"></image>
   <view class="warpper-title">
@@ -8,18 +45,19 @@
 </view>
 <van-divider hairline />
 <view class="container">
-  <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="FlipPickerDate">时间</van-button>
-  | <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)">新度</van-button>
-  | <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)">价格</van-button>
-  | <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)">售出</van-button>
+  <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="flipPicker_date">时间</van-button>
+  | <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="flipPicker_new">新度</van-button>
+  | <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="flipPicker_price">价格</van-button>
+  | <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="flipPicker_isSold">售出</van-button>
   <van-search
-    value="{{ value }}"
+    value="{{ searchValue_item }}"
     placeholder="搜索物品"
     use-action-slot
     shape="round"
-    bind:search="onSearch"
+    bind:change="onSearchChange_item"
+    bind:search="onSearch_item"
   >
-    <view slot="action" bind:tap="onSearch">搜索</view>
+    <view slot="action" bind:tap="onSearch_item">搜索</view>
   </van-search>
 
   <scroll-view scroll-y="true" style="height: 800rpx;">

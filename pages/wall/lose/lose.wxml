@@ -1,3 +1,31 @@
+ <!-- public date -->
+ <van-popup show="{{ show_publicDate }}" position="bottom" bind:close="flipPicker_publicDate">
+  <van-picker
+    columns="{{ columns_date }}"
+    show-toolbar
+    bind:cancel="flipPicker_publicDate"
+    bind:confirm="onConfirm_publicDate"
+  />
+</van-popup>
+ <!-- lose date -->
+ <van-popup show="{{ show_loseDate }}" position="bottom" bind:close="flipPicker_loseDate">
+  <van-picker
+    columns="{{ columns_date }}"
+    show-toolbar
+    bind:cancel="flipPicker_loseDate"
+    bind:confirm="onConfirm_loseDate"
+  />
+</van-popup>
+ <!-- isFound -->
+ <van-popup show="{{ show_isFound }}" position="bottom" bind:close="flipPicker_isFound">
+  <van-picker
+    columns="{{ columns_isFound }}"
+    show-toolbar
+    bind:cancel="flipPicker_isFound"
+    bind:confirm="onConfirm_isFound"
+  />
+</van-popup>
+
 <view class="warpper">
   <image class="warpper-image" mode='widthFix' src="https://s2.ax1x.com/2019/10/19/KmitZq.png"></image>
   <view class="warpper-title">
@@ -8,17 +36,18 @@
 </view>
 <van-divider hairline />
 <view class="container">
-  <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="FlipPickerDate">丢失时间</van-button>
-  | <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)">发布时间</van-button>
-  | <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)">是否找到</van-button>
+  <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="flipPicker_publicDate">发布时间</van-button>
+  | <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="flipPicker_loseDate">丢失时间</van-button>
+  | <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="flipPicker_isFound">是否找到</van-button>
   <van-search
-    value="{{ value }}"
+    value="{{ searchValue_item }}"
     placeholder="搜索物品"
     use-action-slot
     shape="round"
-    bind:search="onSearch"
+    bind:change="onSearchChange_item"
+    bind:search="onSearch_item"
   >
-    <view slot="action" bind:tap="onSearch">搜索</view>
+    <view slot="action" bind:tap="onSearch_item">搜索</view>
   </van-search>
   <scroll-view scroll-y="true" style="height: 800rpx;">
     <van-card

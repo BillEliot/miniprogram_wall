@@ -11,13 +11,39 @@ Page({
     order: 'reverse',
     index: 0,
     helpList: [],
-    numHelp: 0
+    numHelp: 0,
+    columns_date: ['最新', '最旧'],
+    show_date: false
   },
 
   onHelp: function (e) {
     wx.navigateTo({
       url: '/pages/wall/help/help_detail/help_detail?id=' + e.currentTarget.dataset.id
     })
+  },
+
+  flipPicker_date: function () {
+    this.setData({ show_date: !this.data.show_date })
+  },
+
+  onConfirm_date: function (e) {
+    const { picker, value, index } = e.detail
+    if (value == '最新') {
+      this.setData({
+        filterType: 'date',
+        order: 'reverse',
+        index: 0
+      })
+    }
+    else if (value == '最旧') {
+      this.setData({
+        filterType: 'date',
+        order: 'positive',
+        index: 0
+      })
+    }
+    this.onLoad()
+    this.setData({ show_date: false })
   },
 
   /**

@@ -7,13 +7,64 @@ Page({
    */
   data: {
     app: app,
-    lose: null
+    user: null,
+    lose: null,
+    comment: ''
+  },
+
+  onInput_comment: function (e) {
+    this.setData({ comment: e.detail.value })
+  },
+  onComment: function () {
+    if (app.globalData.user.uid == -1) {
+      Toast.fail('先登录再评论吧～')
+    }
+    else if (this.data.comment == '') {
+      Toast.fail('说点什么吧～')
+    }
+    else {
+      let _this = this
+      wx.request({
+        url: app.globalData.url + '/api/submitLoseComment',
+        method: 'post',
+        header: {
+          'content-type': 'application/x-www-form-urlencoded'
+        },
+        data: {
+          id: this.data.lose.id,
+          uid: app.globalData.user.uid,
+          content: this.data.comment
+        },
+        success: function (res) {
+          if (res.data == 1) {
+            app.globalData.Toast.fail('未知错误')
+          }
+          else {
+            let newComment = [{
+              uid: app.globalData.user.uid,
+              avatar: app.globalData.user.avatar,
+              nickname: app.globalData.user.nickname,
+              content: _this.data.comment,
+              date: '刚刚'
+            }]
+            _this.data.lose.comments = newComment.concat(_this.data.lose.comments);
+            _this.setData({
+              comment: '',
+              'lose.comments': _this.data.lose.comments
+            })
+            app.globalData.Toast.success('评论成功')
+          }
+        }
+      })
+    }
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
+    this.setData({ user: app.globalData.user })
+
     let _this = this
     wx.request({
       url: app.globalData.url + '/api/getLoseDetail',

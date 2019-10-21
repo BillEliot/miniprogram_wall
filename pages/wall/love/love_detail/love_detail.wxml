@@ -1,0 +1,64 @@
+<van-toast id="van-toast" />
+<view class="warpper">
+  <image class="warpper-image" mode='widthFix' src="https://s2.ax1x.com/2019/10/19/KmitZq.png"></image>
+  <view class="warpper-title">
+    <view class="warpper-head">（づ￣3￣）づ╭❤～</view>
+    <view class="warpper-subhead">说出来了呢～</view>
+  </view>
+</view>
+<van-divider />
+<view class="container text-center">
+  <view style="height: 200rpx;">
+    <view class="user-left">
+      <image mode="aspectFit" src="{{ app.globalData.url + love.userFrom_avatar }}" class="avatar" />
+      <view class="nickname">{{ love.userFrom_nickname }}</view>
+      <view class="bio">{{ love.userFrom_bio }}</view>
+    </view>
+    <view wx:if="{{ love.userTo.length == 1 }}" class="user-right">
+      <image mode="aspectFit" src="{{ app.globalData.url + love.userTo[0].avatar }}" class="avatar" />
+      <view class="nickname">{{ love.userTo[0].nickname }}</view>
+      <view class="bio">{{ love.userTo[0].bio }}</view>
+    </view>
+    <view wx:else class="user-right">
+      <image mode="aspectFit" src="{{ app.globalData.url + love.userTo[0].avatar }}" class="avatar" />
+      <view class="nickname">{{ love.userTo[0].nickname }}</view>
+      <view class="bio">{{ love.userTo[0].bio }}</view>
+      <van-button round type="info" size="mini" bindtap="more" data-userto="{{ love.userTo }}">更多</van-button>
+    </view>
+  </view>
+
+  <view style="margin-top: 20rpx;">
+    <view>{{ love.content }}</view>
+  </view>
+
+  <scroll-view scroll-x style="white-space: nowrap; margin-top: 20rpx;">
+    <view wx:for="{{ love.images }}" wx:key="*this" style="display: inline-block;">
+      <image mode="scaleToFill" src="{{ app.globalData.url + item }}" style="padding: 10rpx;" />
+    </view>
+  </scroll-view>
+
+  <view>共{{ love.comments.length }}条评论</view>
+  <scroll-view scroll-y="true" style="height: 500rpx;">
+    <view wx:for="{{ love.comments }}" wx:key="{{ item.id }}" class="comment text-left">
+      <view class='comment_cell'>
+          <image mode="scaleToFill" src="{{ app.globalData.url + item.avatar }}" class='comment_avatar' />
+          <view class='comment_right'>
+            <view class='comment_nickname'>{{ item.nickname }}</view>
+            <view class='comment_content'>{{ item.content }}</view>
+            <view class="comment_date">{{ item.date }}</view>
+          </view>
+      </view>
+    </view>
+  </scroll-view>
+  <van-divider dashed />
+  <view class="comment text-left">
+    <view class='comment_cell'>
+        <image mode="scaleToFill" src="{{ app.globalData.url + user.avatar }}" class='comment_avatar' />
+        <view class='comment_right'>
+          <view class='comment_nickname'>{{ user.nickname }}</view>
+          <textarea value="{{ comment }}" bindinput="onInput_comment" placeholder="评论些什么吧～" class="comment_box" />
+          <van-button type="info" size="mini" style="float: right;" bindtap="onComment">评论</van-button>
+        </view>
+    </view>
+  </view>
+</view>

@@ -1,3 +1,4 @@
+<van-toast id="van-toast" />
 <view class="warpper">
   <image class="warpper-image" mode='widthFix' src="https://s2.ax1x.com/2019/10/19/KmitZq.png"></image>
   <view class="warpper-title">
@@ -31,10 +32,11 @@
   <van-divider dashed />
   <view class="comment text-left">
     <view class='comment_cell'>
-        <image mode="scaleToFill" src="{{ app.globalData.url + help.user.avatar }}" class='comment_avatar' />
+        <image mode="scaleToFill" src="{{ app.globalData.url + user.avatar }}" class='comment_avatar' />
         <view class='comment_right'>
-          <view class='comment_nickname'>Eiot</view>
-          <textarea placeholder="评论些什么吧～" class="comment_box" />
+          <view class='comment_nickname'>{{ user.nickname }}</view>
+          <textarea value="{{ comment }}" bindinput="onInput_comment" placeholder="评论些什么吧～" class="comment_box" />
+          <van-button type="info" size="mini" style="float: right;" bindtap="onComment">评论</van-button>
         </view>
     </view>
   </view>

@@ -15,7 +15,7 @@ Component({
       "text": "校园动态"
     },
     {
-      "pagePath": "/pages/profile/login/login",
+      "pagePath": "/pages/profile/profile",
       "text": "我"
     }]
   },

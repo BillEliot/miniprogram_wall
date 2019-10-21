@@ -1,29 +1,30 @@
-// pages/profile/login/login.js
+// pages/profile/profile_detail/profile_detail.js
 Page({
 
   /**
    * Page initial data
    */
   data: {
-
-  },
-
-  register: function () {
-    wx.navigateTo({
-      url: '/pages/profile/register/register',
-    })
-  },
-  login_web: function () {
-    wx.navigateTo({
-      url: '/pages/profile/login_web/login_web',
-    })
+    email: '',
+    phone: '',
+    qq: '',
+    wechat: '',
+    class: '',
+    coin: '',
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    
+    this.setData({
+      email: options.email,
+      phone: options.phone,
+      qq: options.qq,
+      wechat: options.wechat,
+      class: options.class,
+      coin: options.coin
+    })
   },
 
   /**
@@ -37,12 +38,7 @@ Page({
    * Lifecycle function--Called when page show
    */
   onShow: function () {
-    if (typeof this.getTabBar === 'function' &&
-      this.getTabBar()) {
-      this.getTabBar().setData({
-        selected: 3
-      })
-    }
+
   },
 
   /**

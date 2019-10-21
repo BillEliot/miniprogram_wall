@@ -1,3 +1,22 @@
+ <!-- date -->
+ <van-popup show="{{ show_date }}" position="bottom" bind:close="flipPicker_date">
+  <van-picker
+    columns="{{ columns_date }}"
+    show-toolbar
+    bind:cancel="flipPicker_date"
+    bind:confirm="onConfirm_date"
+  />
+</van-popup>
+ <!-- thumbsUp -->
+ <van-popup show="{{ show_thumbsUp }}" position="bottom" bind:close="flipPicker_thumbsUp">
+  <van-picker
+    columns="{{ columns_thumbsUp }}"
+    show-toolbar
+    bind:cancel="flipPicker_thumbsUp"
+    bind:confirm="onConfirm_thumbsUp"
+  />
+</van-popup>
+
 <van-popup show="{{ show_more }}" position="right" bind:close="onClose_more">
   <view wx:for="{{ moreList }}" wx:key="{{ item.uid }}" class="text-center">
     <image mode="aspectFit" src="{{ app.globalData.url + item.avatar }}" class="avatar" />
@@ -16,29 +35,31 @@
 </view>
 <van-divider hairline />
 <view class="container">
-  <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="FlipPickerDate">时间</van-button>
-  | <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)">赞数</van-button>
+  <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="flipPicker_date">时间</van-button>
+  | <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="flipPicker_thumbsUp">赞数</van-button>
   <van-search
-    value="{{ value }}"
+    value="{{ searchValue_userFrom }}"
     placeholder="搜索表白人"
     use-action-slot
     shape="round"
-    bind:search="onSearch"
+    bind:change="onSearchChange_userFrom"
+    bind:search="onSearch_userFrom"
   >
-    <view slot="action" bind:tap="onSearch">搜索</view>
+    <view slot="action" bind:tap="onSearch_userFrom">搜索</view>
   </van-search>
   <van-search
-    value="{{ value }}"
+    value="{{ searchValue_userTo }}"
     placeholder="搜索被表白人"
     use-action-slot
     shape="round"
-    bind:search="onSearch"
+    bind:change="onSearchChange_userTo"
+    bind:search="onSearch_userTo"
   >
-    <view slot="action" bind:tap="onSearch">搜索</view>
+    <view slot="action" bind:tap="onSearch_userTo">搜索</view>
   </van-search>
 
   <scroll-view scroll-y="true" style="height: 1500rpx;">
-    <view wx:for="{{ loveList }}" wx:key="{{ item.id }}" class="text-center">
+    <view wx:for="{{ loveList }}" wx:for-index="index" wx:key="{{ item.id }}" class="text-center">
       <view style="height: 200rpx;">
         <view class="user-left">
           <image mode="aspectFit" src="{{ app.globalData.url + item.userFrom_avatar }}" class="avatar" />
@@ -60,8 +81,9 @@
       <view>{{ item.content }}</view>
       <image mode="aspectFit" src="{{ app.globalData.url + item.cover }}" />
       <view style="height: 100rpx;">
-        <van-button wx:if="{{ item.isThumbsUp }}" icon="good-job" size="mini" class="thumbs">{{ item.thumbsUp }}</van-button>
-        <van-button wx:else icon="good-job-o" size="mini" class="thumbs">{{ item.thumbsUp }}</van-button>
+        <van-button wx:if="{{ item.isThumbsUp }}" icon="good-job" size="mini" bindtap="onThumbsUp" data-index="{{ index }}" class="thumbs">{{ item.thumbsUp }}</van-button>
+        <van-button wx:else icon="good-job-o" size="mini" bindtap="onThumbsUp" data-index="{{ index }}" class="thumbs">{{ item.thumbsUp }}</van-button>
+        <van-button round type="primary" size="small" bindtap="onLove" data-id="{{ item.id }}">查看详情</van-button>
         <van-button icon="comment-o" size="mini" class="comments">{{ item.comments }}</van-button>
       </view>
     </view>

@@ -1,0 +1,14 @@
+<view class="container">
+  <van-cell-group>
+    <van-cell title="邮箱" value="{{ email }}" />
+    <van-cell title="手机" value="{{ phone }}" />
+    <van-cell title="qq" value="{{ qq }}" />
+    <van-cell title="微信" value="{{ wechat }}" />
+    <van-cell title="班级" value="{{ class }}" />
+    <van-cell title="硬币" value="{{ coin }}" />
+  </van-cell-group>
+  <van-divider />
+  <van-button type="default" size="large">编辑资料</van-button>
+  <van-button type="info" size="large">修改密码</van-button>
+  <van-button type="primary" size="large">申请身份认证</van-button>
+</view>

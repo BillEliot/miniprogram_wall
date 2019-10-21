@@ -8,7 +8,7 @@ Page({
   data: {
     app: app,
     user: null,
-    article: null,
+    love: null,
     comment: ''
   },
 
@@ -25,13 +25,13 @@ Page({
     else {
       let _this = this
       wx.request({
-        url: app.globalData.url + '/api/submitArticleComment',
+        url: app.globalData.url + '/api/submitLoveComment',
         method: 'post',
         header: {
           'content-type': 'application/x-www-form-urlencoded'
         },
         data: {
-          id: this.data.article.id,
+          id: this.data.love.id,
           uid: app.globalData.user.uid,
           content: this.data.comment
         },
@@ -47,10 +47,10 @@ Page({
               content: _this.data.comment,
               date: '刚刚'
             }]
-            _this.data.article.comments = newComment.concat(_this.data.article.comments);
+            _this.data.love.comments = newComment.concat(_this.data.love.comments);
             _this.setData({
               comment: '',
-              'article.comments': _this.data.article.comments
+              'love.comments': _this.data.love.comments
             })
             app.globalData.Toast.success('评论成功')
           }
@@ -67,7 +67,7 @@ Page({
 
     let _this = this
     wx.request({
-      url: app.globalData.url + '/api/getArticleDetail',
+      url: app.globalData.url + '/api/getLoveDetail',
       method: 'post',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -80,7 +80,7 @@ Page({
           Toast.fail('未知错误')
         }
         else {
-          _this.setData({ article: res.data })
+          _this.setData({ love: res.data })
         }
       }
     })

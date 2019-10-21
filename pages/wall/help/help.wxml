@@ -1,3 +1,13 @@
+ <!-- date -->
+ <van-popup show="{{ show_date }}" position="bottom" bind:close="flipPicker_date">
+  <van-picker
+    columns="{{ columns_date }}"
+    show-toolbar
+    bind:cancel="flipPicker_date"
+    bind:confirm="onConfirm_date"
+  />
+</van-popup>
+
 <view class="warpper">
   <image class="warpper-image" mode='widthFix' src="https://s2.ax1x.com/2019/10/19/KmitZq.png"></image>
   <view class="warpper-title">
@@ -8,7 +18,7 @@
 </view>
 <van-divider hairline />
 <view class="container">
-  <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="FlipPickerDate">时间</van-button>
+  <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="flipPicker_date">时间</van-button>
   <van-divider hairline />
   <view class="summary">共有{{ numHelp }}个求助</view>
   <scroll-view scroll-y="true" style="height: 800rpx;">

@@ -1,0 +1,19 @@
+<van-cell-group>
+  <van-cell
+    size="large"
+    wx:for="{{ loves }}"
+    wx:for-index="index"
+    wx:key="{{ imdex }}"
+    label="{{ item.date }}"
+  >
+    <view slot="title">
+      <image mode="aspectFit" class="avatar" src="{{ app.globalData.url + item.userTo_avatar }}"></image>
+      <view class="base">
+        <view class="base-nickname">To {{ item.userTo_nickname }}</view>
+      </view>
+    </view>
+    <view slot="">
+      <view class="text">{{ item.content }}</view>
+    </view>
+  </van-cell>
+</van-cell-group>

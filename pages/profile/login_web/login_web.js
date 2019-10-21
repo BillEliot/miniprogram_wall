@@ -1,4 +1,4 @@
-const app = getApp();
+const app = getApp()
 
 Page({
   /**
@@ -74,14 +74,9 @@ Page({
         'password2.error_message': ''
       })
     }
-    if (this.data.password2.value == '') {
-      this.setData({ 'password2.error': true })
-    }
-    else {
-      this.setData({ 'password2.error': false })
-    }
 
     if (!this.data.email.error && !this.data.password.error && !this.data.password2.error) {
+      let _this = this
       wx.request({
         url: app.globalData.url + '/api/checkUniqueEmail',
         method: 'post',
@@ -96,16 +91,42 @@ Page({
             app.globalData.Dialog.confirm({
               message: '未注册的邮箱，点击确定注册'
             })
-              .then(() => {
-                wx.navigateTo({
-                  url: '/pages/profile/register/register',
-                })
+            .then(() => {
+              wx.navigateTo({
+                url: '/pages/profile/register/register',
               })
-              .catch(() => { })
+            })
+            .catch(() => { })
           }
           else {
             // bind
-            
+            wx.request({
+              url: app.globalData.url + '/api/bindWX',
+              method: 'post',
+              header: {
+                'content-type': 'application/x-www-form-urlencoded'
+              },
+              data: {
+                openid: app.globalData.user.openid,
+                email: _this.data.email.value,
+                password: _this.data.password.value
+              },
+              success: function (res) {
+                if (res.data == 1) {
+                  app.globalData.Toast.fail('密码错误')
+                }
+                else if (res.data == 2) {
+                  app.globalData.Toast.fail('未知错误')
+                }
+                else {
+                  app.globalData.Toast.success('登录成功')
+                  app.globalData.user = res.data
+                  wx.navigateTo({
+                    url: '/pages/profile/profile',
+                  })
+                }
+              }
+            })
           }
         }
       })

@@ -6,7 +6,6 @@
     "pages/school/school",
     "pages/school/hot/hot",
     "pages/school/lecture/lecture",
-    "pages/profile/login/login",
     "pages/profile/register/register",
     "pages/school/hot/hot_detail/hot_detail",
     "pages/profile/login_web/login_web",
@@ -17,7 +16,12 @@
     "pages/wall/love/love",
     "pages/wall/help/help_detail/help_detail",
     "pages/wall/deal/deal_detail/deal_detail",
-    "pages/wall/lose/lose_detail/lose_detail"
+    "pages/wall/lose/lose_detail/lose_detail",
+    "pages/wall/love/love_detail/love_detail",
+    "pages/profile/profile_detail/profile_detail",
+    "pages/profile/help/help",
+    "pages/profile/comment/comment",
+    "pages/profile/love/love"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -62,7 +66,7 @@
         "text": "校园动态"
       },
       {
-        "pagePath": "pages/profile/login/login",
+        "pagePath": "pages/profile/profile",
         "text": "我"
       }
     ]

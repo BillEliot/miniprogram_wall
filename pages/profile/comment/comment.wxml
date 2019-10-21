@@ -1,0 +1,17 @@
+<van-cell-group>
+  <van-cell
+    size="large"
+    wx:for="{{ comments }}"
+    wx:for-index="index"
+    wx:key="{{ imdex }}"
+    value="{{ item.content }}"
+    label="{{ item.date }}"
+  >
+    <view slot="title">
+      <image mode="aspectFit" class="avatar" src="{{ app.globalData.url + item.avatar }}"></image>
+      <view class="base">
+        <view class="base-nickname">{{ item.nickname }}</view>
+      </view>
+    </view>
+  </van-cell>
+</van-cell-group>

@@ -1,9 +1,29 @@
- <van-popup
-  show="{{ show_date }}"
-  position="bottom"
-  bind:close="onClosePicker_date"
-  >
-  <van-picker columns="{{ columns_date }}" bind:change="onChange" />
+ <!-- date -->
+ <van-popup show="{{ show_date }}" position="bottom" bind:close="flipPicker_date">
+  <van-picker
+    columns="{{ columns_date }}"
+    show-toolbar
+    bind:cancel="flipPicker_date"
+    bind:confirm="onConfirm_date"
+  />
+</van-popup>
+<!-- thumbsUp -->
+<van-popup show="{{ show_thumbsUp }}" position="bottom" bind:close="flipPicker_thumbsUp">
+  <van-picker
+    columns="{{ columns_thumbsUp }}"
+    show-toolbar
+    bind:cancel="flipPicker_thumbsUp"
+    bind:confirm="onConfirm_thumbsUp"
+  />
+</van-popup>
+<!-- coin -->
+<van-popup show="{{ show_coin }}" position="bottom" bind:close="flipPicker_coin">
+  <van-picker
+    columns="{{ columns_coin }}"
+    show-toolbar
+    bind:cancel="flipPicker_coin"
+    bind:confirm="onConfirm_coin"
+  />
 </van-popup>
 
 <view class="warpper">
@@ -16,17 +36,28 @@
 </view>
 <van-divider hairline />
 <view class="container">
-  <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="FlipPickerDate">时间</van-button>
-  | <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)">赞数</van-button>
-  | <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)">硬币数</van-button>
+  <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="flipPicker_date">时间</van-button>
+  | <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="flipPicker_thumbsUp">赞数</van-button>
+  | <van-button round size="small" color="linear-gradient(to right, #4bb0ff, #6149f6)" bindtap="flipPicker_coin">硬币数</van-button>
   <van-search
-    value="{{ value }}"
-    placeholder="搜索文章 / 用户"
+    value="{{ searchValue_article }}"
+    placeholder="搜索文章"
     use-action-slot
     shape="round"
-    bind:search="onSearch"
+    bind:change="onSearchChange_article"
+    bind:search="onSearch_article"
   >
-    <view slot="action" bind:tap="onSearch">搜索</view>
+    <view slot="action" bind:tap="onSearch_article">搜索</view>
+  </van-search>
+  <van-search
+    value="{{ searchValue_user }}"
+    placeholder="搜索用户"
+    use-action-slot
+    shape="round"
+    bind:change="onSearchChange_user"
+    bind:search="onSearch_user"
+  >
+    <view slot="action" bind:tap="onSearch_user">搜索</view>
   </van-search>
 
   <text class="summary">共有{{ numArticle }}篇文章</text>
