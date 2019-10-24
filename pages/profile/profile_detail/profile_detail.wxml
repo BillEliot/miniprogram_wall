@@ -1,5 +1,9 @@
+<van-dialog id="van-dialog" />
 <view class="container">
   <van-cell-group>
+    <van-cell title="昵称" value="{{ nickname }}" />
+    <van-cell title="个性签名" value="{{ bio }}" />
+    <van-cell title="个人认证" value="{{ auth }}" />
     <van-cell title="邮箱" value="{{ email }}" />
     <van-cell title="手机" value="{{ phone }}" />
     <van-cell title="qq" value="{{ qq }}" />
@@ -8,7 +12,7 @@
     <van-cell title="硬币" value="{{ coin }}" />
   </van-cell-group>
   <van-divider />
-  <van-button type="default" size="large">编辑资料</van-button>
-  <van-button type="info" size="large">修改密码</van-button>
-  <van-button type="primary" size="large">申请身份认证</van-button>
+  <van-button type="default" size="large" bindtap="editProfile">编辑资料</van-button>
+  <van-button type="info" size="large" bindtap="changePassword">修改密码</van-button>
+  <van-button type="primary" size="large" bindtap="apply">申请身份认证</van-button>
 </view>

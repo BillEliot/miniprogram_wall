@@ -1,0 +1,15 @@
+<van-cell-group>
+  <van-cell
+    is-link
+    size="large"
+    wx:for="{{ helps }}"
+    wx:key="{{ item.id }}"
+    title="{{ item.title }}"
+    label="{{ item.date }}"
+    url="{{ '/pages/wall/help/help_detail/help_detail?id=' + item.id }}"
+  >
+    <view slot="">
+      <view class="text">{{ item.content }}</view>
+    </view>
+  </van-cell>
+</van-cell-group>

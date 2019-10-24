@@ -1,12 +1,15 @@
-<van-dialog id="van-dialog" />
+<van-toast id="van-toast" />
 <van-popup
   show="{{ show_classes }}"
   position="bottom"
   bind:close="onClose_Classes"
 >
   <van-picker
+    show-toolbar
+    title="选择班级"
     columns="{{ columns_classes }}"
-    bind:change="onChange_Classes"
+    bind:cancel="onClose_Classes"
+    bind:confirm="onConfirm_Classes"
   />
 </van-popup>
 <van-popup
@@ -15,41 +18,15 @@
   bind:close="onClose_Gender"
 >
   <van-picker
+    show-toolbar
+    title="选择性别"
     columns="{{ columns_gender }}"
-    bind:change="onChange_Gender"
+    bind:cancel="onClose_Gender"
+    bind:confirm="onConfirm_Gender"
   />
 </van-popup>
 <view class="container">
   <van-cell-group>
-    <van-field
-      value="{{ email.value }}"
-      label="E-mail"
-      placeholder="请输入E-mail"
-      error="{{ email.error }}"
-      error-message="{{ email.error_message }}"
-      required
-      bind:change="onChange_email"
-    />
-    <van-field
-      value="{{ password.value }}"
-      label="密码"
-      placeholder="请输入密码"
-      password
-      error="{{ password.error }}"
-      error-message="{{ password.error_message }}"
-      required
-      bind:change="onChange_password"
-    />
-    <van-field
-      value="{{ password2.value }}"
-      label="确认密码"
-      placeholder="请确认密码"
-      password
-      error="{{ password2.error }}"
-      error-message="{{ password2.error_message }}"
-      bind:change="onChange_password2"
-      required
-    />
     <van-field
       value="{{ nickname.value }}"
       label="昵称"
@@ -72,22 +49,26 @@
       value="{{ gender.value }}"
       label="性别"
       placeholder="请输入性别"
-      bind:focus="OnFocus_Gender"
       error="{{ gender.error }}"
       error-message="{{ gender.error_message }}"
       required
+      readonly
+      use-button-slot
       bind:change="onChange_gender"
-    />
+    >
+      <van-button slot="button" size="small" bindtap="OnFocus_Gender">选择</van-button>
+    </van-field>
     <van-field
       value="{{ class.value }}"
       label="班级"
       placeholder="请选择班级"
-      bind:focus="OnFocus_Classes"
       error="{{ class.error }}"
       error-message="{{ class.error_message }}"
       required
       bind:change="onChange_class"
-    />
+    >
+      <van-button slot="button" size="small" bindtap="OnFocus_Classes">选择</van-button>
+    </van-field>
     <van-field
       value="{{ phone.value }}"
       label="手机"
@@ -114,5 +95,5 @@
     />
   </van-cell-group>
   <van-divider hairline />
-  <van-button type="primary" size="large" bindtap="register">注册</van-button>
+  <van-button type="primary" size="large" bindtap="change">确定</van-button>
 </view>

@@ -1,10 +1,11 @@
 <van-cell-group>
   <van-cell
+    is-link
     size="large"
     wx:for="{{ loves }}"
-    wx:for-index="index"
-    wx:key="{{ imdex }}"
+    wx:key="{{ item.id }}"
     label="{{ item.date }}"
+    url="{{ '/pages/wall/love/love_detail/love_detail?id=' + item.id }}"
   >
     <view slot="title">
       <image mode="aspectFit" class="avatar" src="{{ app.globalData.url + item.userTo_avatar }}"></image>

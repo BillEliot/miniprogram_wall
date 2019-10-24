@@ -1,10 +1,13 @@
-// pages/profile/profile_detail/profile_detail.js
-Page({
+const app = getApp()
 
+Page({
   /**
    * Page initial data
    */
   data: {
+    nickname: '',
+    bio: '',
+    auth: '',
     email: '',
     phone: '',
     qq: '',
@@ -13,11 +16,30 @@ Page({
     coin: '',
   },
 
+  apply: function () {
+    app.globalData.Dialog.alert({
+      message: '请联系 qq1161142536 / eliotwjz@gmail.com 申请身份认证！'
+    })
+  },
+  editProfile: function () {
+    wx.navigateTo({
+      url: '/pages/profile/profile_detail/editProfile/editProfile?nickname=' + this.data.nickname + '&bio=' + this.data.bio + '&phone=' + this.data.phone + '&qq=' + this.data.qq + '&wechat=' + this.data.wechat + '&class=' + this.data.class
+    })
+  },
+  changePassword: function () {
+    wx.navigateTo({
+      url: '/pages/profile/profile_detail/changePassword/changePassword'
+    })
+  },
+
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
     this.setData({
+      nickname: options.nickname,
+      bio: options.bio,
+      auth: options.auth,
       email: options.email,
       phone: options.phone,
       qq: options.qq,

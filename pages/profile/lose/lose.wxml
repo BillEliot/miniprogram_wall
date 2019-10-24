@@ -1,0 +1,20 @@
+<van-cell-group>
+  <van-cell
+    is-link
+    size="large"
+    wx:for="{{ loses }}"
+    wx:key="{{ item.id }}"
+    title="{{ item.name }}"
+    use-label-slot
+    url="{{ '/pages/wall/lose/lose_detail/lose_detail?id=' + item.id }}"
+  >
+    <view slot="">
+      <view class="text">{{ item.description }}</view>
+    </view>
+    <view slot="label">
+      <van-tag wx:if="{{ item.isFound }}" type="success">已找到</van-tag>
+      <van-tag wx:else type="danger">未找到</van-tag>
+      <view>{{ item.date }}</view>
+    </view>
+  </van-cell>
+</van-cell-group>

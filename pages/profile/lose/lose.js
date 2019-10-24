@@ -1,18 +1,18 @@
-// pages/profile/help/help.js
+// pages/profile/lose/lose.js
 Page({
 
   /**
    * Page initial data
    */
   data: {
-    helps: []
+    loses: []
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    this.setData({ helps: JSON.parse(options.helps) })
+    this.setData({ loses: JSON.parse(options.loses) })
   },
 
   /**

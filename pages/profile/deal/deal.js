@@ -1,18 +1,18 @@
-// pages/profile/help/help.js
+// pages/profile/deal/deal.js
 Page({
 
   /**
    * Page initial data
    */
   data: {
-    helps: []
+    deals: []
   },
 
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    this.setData({ helps: JSON.parse(options.helps) })
+    this.setData({ deals: JSON.parse(options.deals) })
   },
 
   /**

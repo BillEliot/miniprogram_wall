@@ -6,7 +6,7 @@
   <van-cell
     is-link
     value="详细信息"
-    url="{{ '/pages/profile/profile_detail/profile_detail?email=' + profile.email + '&phone=' + profile.phone + '&qq=' + profile.qq + '&wechat=' + profile.wechat + '&class=' + profile.class + '&coin=' + profile.coin }}"
+    url="{{ '/pages/profile/profile_detail/profile_detail?nickname=' + profile.nickname + '&bio=' + profile.bio + '&auth=' + profile.auth + '&email=' + profile.email + '&phone=' + profile.phone + '&qq=' + profile.qq + '&wechat=' + profile.wechat + '&class=' + profile.class + '&coin=' + profile.coin }}"
   >
     <view slot="title">
       <image mode="aspectFit" class="avatar" src="{{ app.globalData.url + profile.avatar }}"></image>
@@ -23,9 +23,14 @@
     <van-cell title="留言板" is-link icon="coupon-o" url="{{ '/pages/profile/comment/comment?comments=' + str_comments }}" />
     <van-cell title="TA的表白" is-link icon="like-o" url="{{ '/pages/profile/love/love?loves=' + str_loves }}" />
     <van-cell title="TA的失物" is-link icon="point-gift-o" url="{{ '/pages/profile/lose/lose?loses=' + str_loses }}" />
-    <van-cell title="TA的二手物品" is-link icon="bag-o" url="{{ '/pages/profile/deals/deals?deals=' + str_deals }}" />
+    <van-cell title="TA的二手物品" is-link icon="bag-o" url="{{ '/pages/profile/deal/deal?deals=' + str_deals }}" />
     <van-cell title="TA的求助" is-link icon="thumb-circle-o" url="{{ '/pages/profile/help/help?helps=' + str_helps }}" />
   </van-cell-group>
-  <van-divider hairline />
+  <van-cell-group title="其他">
+    <van-cell title="题库(Beta)" is-link icon="gem-o" url="{{ '/pages/profile/comment/comment?comments=' + str_comments }}" />
+    <van-cell title="校园团体" is-link icon="cluster-o" url="{{ '/pages/profile/love/love?loves=' + str_loves }}" />
+    <van-cell title="新生指南" is-link icon="medel-o" url="{{ '/pages/profile/lose/lose?loses=' + str_loses }}" />
+  </van-cell-group>
+  <van-button square size="large">关于</van-button>
   <van-button square type="danger" size="large" bindtap="logoff">注销</van-button>
 </view>

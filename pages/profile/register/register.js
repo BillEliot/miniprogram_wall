@@ -166,12 +166,6 @@ Page({
         'password2.error_message': ''
       })
     }
-    if (this.data.password2.value == '') {
-      this.setData({ 'password2.error': true })
-    }
-    else {
-      this.setData({ 'password2.error': false })
-    }
     // nickname
     if (this.data.nickname.value == '') {
       this.setData({ 'nickname.error': true })
