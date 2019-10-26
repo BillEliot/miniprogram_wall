@@ -1,6 +1,14 @@
 <van-dialog id="van-dialog" />
+<van-toast id="van-toast" />
 <view class="container">
   <van-cell-group>
+    <van-cell title="头像" use-label-slot>
+      <image slot="" mode="aspectFit" src="{{ avatar }}" style="width: 100rpx; height: 100rpx" />
+      <view slot="label">
+        <van-button size="mini" bindtap="previewAvatar">查看头像</van-button>
+        <van-button size="mini" bindtap="changeAvatar">修改头像</van-button>
+      </view>
+    </van-cell>
     <van-cell title="昵称" value="{{ nickname }}" />
     <van-cell title="个性签名" value="{{ bio }}" />
     <van-cell title="个人认证" value="{{ auth }}" />
@@ -8,6 +16,7 @@
     <van-cell title="手机" value="{{ phone }}" />
     <van-cell title="qq" value="{{ qq }}" />
     <van-cell title="微信" value="{{ wechat }}" />
+    <van-cell title="性别" value="{{ gender }}" />
     <van-cell title="班级" value="{{ class }}" />
     <van-cell title="硬币" value="{{ coin }}" />
   </van-cell-group>

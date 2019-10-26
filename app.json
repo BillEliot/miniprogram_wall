@@ -25,7 +25,9 @@
     "pages/profile/lose/lose",
     "pages/profile/deal/deal",
     "pages/profile/profile_detail/editProfile/editProfile",
-    "pages/profile/profile_detail/changePassword/changePassword"
+    "pages/profile/profile_detail/changePassword/changePassword",
+    "pages/profile/profile_other/profile_other",
+    "pages/profile/profile_other/profile_other_detail/profile_other_detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

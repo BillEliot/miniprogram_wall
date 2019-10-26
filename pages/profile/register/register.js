@@ -1,8 +1,9 @@
 const app = getApp()
 const classes = {
-  '浙江': ['杭州', '宁波', '温州', '嘉兴', '湖州'],
+  '中医学院': ['五年制一班', '五年制二班', '五年制三班', '五年制四班', '五年制五班', '五年制六班', '五年制七班'],
   '福建': ['福州', '厦门', '莆田', '三明', '泉州']
 }
+const md5 = require('../../../utils/md5.js')
 
 Page({
   /**
@@ -16,7 +17,7 @@ Page({
       className: 'column1'
     },
     {
-      values: classes['浙江'],
+      values: classes['中医学院'],
       className: 'column2',
       defaultIndex: 2
     }],
@@ -79,7 +80,13 @@ Page({
   onChange_Classes(event) {
     const { picker, value, index } = event.detail
     picker.setColumnValues(1, classes[value[0]])
-    this.setData({ 'class.value': event.detail.value[0] + '/' + event.detail.value[1] })
+  },
+  onConfirm_Classes(event) {
+    const { value, index } = event.detail
+    this.setData({ 
+      'class.value': value[0] + '/' + value[1],
+      show_classes: false
+    })
   },
   OnFocus_Gender(event) {
     this.setData({ show_gender: true })
@@ -87,8 +94,11 @@ Page({
   onClose_Gender() {
     this.setData({ show_gender: false })
   },
-  onChange_Gender(event) {
-    this.setData({ 'gender.value': event.detail.value })
+  onConfirm_Gender(event) {
+    this.setData({ 
+      'gender.value': event.detail.value,
+      show_gender: false
+    })
   },
   // Field
   onChange_email(event) {
@@ -220,6 +230,7 @@ Page({
 
     if (!this.data.email.error && !this.data.password.error && !this.data.password2.error && !this.data.nickname.error && !this.data.bio.error && !this.data.class.error && !this.data.gender.error && !this.data.phone.error && !this.data.qq.error) {
       // check unique email
+      let _this = this
       wx.request({
         url: app.globalData.url + '/api/checkUniqueEmail',
         method: 'post',
@@ -231,8 +242,64 @@ Page({
         },
         success: function (res) {
           if (res.data == 'True') {
-            // register
-
+            wx.login({
+              success: function (res) {
+                // register
+                wx.request({
+                  url: app.globalData.url + '/api/registerWX',
+                  method: 'post',
+                  header: {
+                    'content-type': 'application/x-www-form-urlencoded'
+                  },
+                  data: {
+                    code: res.code,
+                    email: _this.data.email.value,
+                    password: md5.hexMD5(_this.data.email.value),
+                    nickname: _this.data.nickname.value,
+                    bio: _this.data.bio.value,
+                    gender: _this.data.gender.value,
+                    class: _this.data.class.value,
+                    phone: _this.data.phone.value,
+                    qq: _this.data.qq.value,
+                    wechat: _this.data.wechat
+                  },
+                  success: function (res) {
+                    console.log(res.data)
+                    if (res.data == 3) {
+                      app.globalData.Toast.fail('昵称不能为Anony或anony')
+                    }
+                    else if (res.data == 4) {
+                      app.globalData.Toast.fail('昵称已存在，换一个吧~')
+                    }
+                    else if (res.data == 5) {
+                      app.globalData.Toast.fail('未知错误')
+                    }
+                    else {
+                      app.globalData.Toast.success('注册成功')
+                      let _this = this
+                      wx.login({
+                        success(res) {
+                          wx.request({
+                            url: app.globalData.url + '/api/loginWX',
+                            method: 'post',
+                            header: {
+                              'content-type': 'application/x-www-form-urlencoded'
+                            },
+                            data: {
+                              code: res.code
+                            },
+                            success(res) {
+                              app.globalData.user = res.data
+                              wx.navigateBack({})
+                            }
+                          })
+                        }
+                      })
+                    }
+                  }
+                })
+              }
+            })
           }
           else {
             app.globalData.Dialog.confirm({
@@ -254,59 +321,46 @@ Page({
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
-    wx.getStorage({
-      key: 'openid',
-      success: function (res) {
-        if (res.data) {
-          Toast.fail('该账号已注册，请登录');
-          wx.navigateTo({
-            url: '/pages/profile/login/login',
+    // Get user wechat info(nickname, gender)
+    var _this = this
+    wx.getSetting({
+      success(res) {
+        if (res.authSetting["scope.userInfo"]) {
+          wx.getUserInfo({
+            success(res) {
+              var gender = '男'
+              if (res.userInfo.gender == 2) {
+                gender = '女'
+              }
+              _this.setData({
+                'nickname.value': res.userInfo.nickName,
+                'gender.value': gender
+              })
+            }
           })
         }
         else {
-          // Get user wechat info(nickname, gender)
-          var _this = this
-          wx.getSetting({
+          // authorize
+          wx.authorize({
+            scope: 'scope.userInfo',
+            // user agreed
             success(res) {
-              if (res.authSetting["scope.userInfo"]) {
-                wx.getUserInfo({
-                  success(res) {
-                    var gender = '男'
-                    if (res.userInfo.gender == 2) {
-                      gender = '女'
-                    }
-                    _this.setData({
-                      'nickname.value': res.userInfo.nickName,
-                      'gender.value': gender
-                    })
+              wx.getUserInfo({
+                success(res) {
+                  var gender = '男'
+                  if (res.userInfo.gender == 2) {
+                    gender = '女'
                   }
-                })
-              }
-              else {
-                // authorize
-                wx.authorize({
-                  scope: 'scope.userInfo',
-                  // user agreed
-                  success(res) {
-                    wx.getUserInfo({
-                      success(res) {
-                        var gender = '男'
-                        if (res.userInfo.gender == 2) {
-                          gender = '女'
-                        }
-                        _this.setData({
-                          'nickname.value': res.userInfo.nickName,
-                          'gender.value': gender
-                        })
-                      }
-                    })
-                  },
-                  // user declined
-                  fail(res) {
-                    Toast.fail('同意授权，以便获取您的昵称等信息');
-                  }
-                })
-              }
+                  _this.setData({
+                    'nickname.value': res.userInfo.nickName,
+                    'gender.value': gender
+                  })
+                }
+              })
+            },
+            // user declined
+            fail(res) {
+              Toast.fail('同意授权，以便获取您的昵称等信息');
             }
           })
         }

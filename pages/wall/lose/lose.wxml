@@ -1,3 +1,4 @@
+  <van-dialog id="van-dialog" />
  <!-- public date -->
  <van-popup show="{{ show_publicDate }}" position="bottom" bind:close="flipPicker_publicDate">
   <van-picker
@@ -31,7 +32,7 @@
   <view class="warpper-title">
     <view class="warpper-head">失物墙</view>
     <view class="warpper-subhead">失物们都回来吧～</view>
-    <van-button round type="info" size="small">发布失物</van-button>
+    <van-button round type="info" size="small" bindtap="submit">发布失物</van-button>
   </view>
 </view>
 <van-divider hairline />

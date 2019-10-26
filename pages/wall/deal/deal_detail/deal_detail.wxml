@@ -21,7 +21,7 @@
 
   <van-divider />
   <view class="text-center">
-    <image mode="scaleToFill" src="{{ app.globalData.url + deal.user.avatar }}" class="avatar" />
+    <image mode="scaleToFill" src="{{ app.globalData.url + deal.user.avatar }}" bindtap="onUser" data-uid="{{ deal.user.uid }} " class="avatar" />
     <view>{{ deal.user.nickname }}</view>
     <van-tag wx:for="{{ deal.user.auth }}" wx:key="*this" type="primary" class="tag">{{ item }}</van-tag>
     <view class="bio">{{ deal.user.bio }}</view>
@@ -41,7 +41,7 @@
     <scroll-view scroll-y="true" style="height: 500rpx;">
       <view wx:for="{{ deal.comments }}" wx:key="{{ item.id }}" class="comment text-left">
         <view class='comment_cell'>
-            <image mode="scaleToFill" src="{{ app.globalData.url + item.avatar }}" class='comment_avatar' />
+            <image mode="scaleToFill" src="{{ app.globalData.url + item.avatar }}" bindtap="onUser" data-uid="{{ item.uid }}" class='comment_avatar' />
             <view class='comment_right'>
               <view class='comment_nickname'>{{ item.nickname }}</view>
               <view class='comment_content'>{{ item.content }}</view>

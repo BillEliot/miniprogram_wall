@@ -21,6 +21,12 @@ Page({
     searchValue_user: ''
   },
 
+  submit: function () {
+    app.globalData.Dialog.alert({
+      message: '请使用PC访问http://www.hnucmwall.top以获取更好的写作体验！'
+    })
+  },
+
   onArticle: function (e) {
     wx.navigateTo({
       url: '/pages/article/article_detail/article_detail?id=' + e.currentTarget.dataset.id
@@ -146,7 +152,7 @@ Page({
   onLoad: function (options) {
     let _this = this
     wx.request({
-      url: app.globalData.url + '/api/getArticleList',
+      url: getApp().globalData.url + '/api/getArticleList',
       method: 'post',
       header: {
         'content-type': 'application/x-www-form-urlencoded'
@@ -169,7 +175,7 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**

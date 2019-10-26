@@ -21,6 +21,12 @@ Page({
     searchValue_userTo: ''
   },
 
+  submit: function () {
+    app.globalData.Dialog.alert({
+      message: '请使用PC访问http://www.hnucmwall.top以获取更好的写作体验！'
+    })
+  },
+
   onLove: function (e) {
     wx.navigateTo({
       url: '/pages/wall/love/love_detail/love_detail?id=' + e.currentTarget.dataset.id
@@ -169,6 +175,14 @@ Page({
         })
       }
     })
+  },
+
+  onUser: function (e) {
+    if (e.target.dataset.uid != -1) {
+      wx.navigateTo({
+        url: '/pages/profile/profile_other/profile_other?uid=' + e.target.dataset.uid,
+      })
+    }
   },
 
   /**

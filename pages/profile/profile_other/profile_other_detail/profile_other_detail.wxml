@@ -1,0 +1,15 @@
+<van-dialog id="van-dialog" />
+<view class="container">
+  <van-cell-group>
+    <van-cell title="昵称" value="{{ nickname }}" />
+    <van-cell title="个性签名" value="{{ bio }}" />
+    <van-cell title="个人认证" value="{{ auth }}" />
+    <van-cell title="邮箱" value="{{ email }}" />
+    <van-cell title="手机" value="{{ phone }}" />
+    <van-cell title="qq" value="{{ qq }}" />
+    <van-cell title="微信" value="{{ wechat }}" />
+    <van-cell title="性别" value="{{ gender }}" />
+    <van-cell title="班级" value="{{ class }}" />
+    <van-cell title="硬币" value="{{ coin }}" />
+  </van-cell-group>
+</view>

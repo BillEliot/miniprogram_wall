@@ -9,7 +9,9 @@ Page({
     app: app,
     user: null,
     love: null,
-    comment: ''
+    comment: '',
+    show_more: false,
+    moreList: []
   },
 
   onInput_comment: function (e) {
@@ -55,6 +57,24 @@ Page({
             app.globalData.Toast.success('评论成功')
           }
         }
+      })
+    }
+  },
+
+  more: function (e) {
+    this.setData({
+      moreList: e.currentTarget.dataset.userto,
+      show_more: true
+    })
+  },
+  onClose_more: function () {
+    this.setData({ show_more: false })
+  },
+
+  onUser: function (e) {
+    if (e.target.dataset.uid != -1) {
+      wx.navigateTo({
+        url: '/pages/profile/profile_other/profile_other?uid=' + e.target.dataset.uid,
       })
     }
   },

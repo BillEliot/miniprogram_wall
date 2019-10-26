@@ -1,4 +1,11 @@
 <van-toast id="van-toast" />
+<van-popup show="{{ show_more }}" position="right" bind:close="onClose_more">
+  <view wx:for="{{ moreList }}" wx:key="{{ item.uid }}" class="text-center">
+    <image mode="aspectFit" src="{{ app.globalData.url + item.avatar }}" bindtap="onUser" data-uid="{{ item.uid }}" class="avatar" />
+    <view class="nickname">{{ item.nickname }}</view>
+    <view class="bio">{{ item.bio }}</view>
+  </view>
+</van-popup>
 <view class="warpper">
   <image class="warpper-image" mode='widthFix' src="https://s2.ax1x.com/2019/10/19/KmitZq.png"></image>
   <view class="warpper-title">
@@ -10,7 +17,7 @@
 <view class="container text-center">
   <view style="height: 200rpx;">
     <view class="user-left">
-      <image mode="aspectFit" src="{{ app.globalData.url + love.userFrom_avatar }}" class="avatar" />
+      <image mode="aspectFit" src="{{ app.globalData.url + love.userFrom_avatar }}" bindtap="onUser" data-uid="{{ love.userFrom_uid }}" class="avatar" />
       <view class="nickname">{{ love.userFrom_nickname }}</view>
       <view class="bio">{{ love.userFrom_bio }}</view>
     </view>
@@ -20,7 +27,7 @@
       <view class="bio">{{ love.userTo[0].bio }}</view>
     </view>
     <view wx:else class="user-right">
-      <image mode="aspectFit" src="{{ app.globalData.url + love.userTo[0].avatar }}" class="avatar" />
+      <image mode="aspectFit" src="{{ app.globalData.url + love.userTo[0].avatar }}" bindtap="onUser" data-uid="{{ love.userTo[0].uid }}" class="avatar" />
       <view class="nickname">{{ love.userTo[0].nickname }}</view>
       <view class="bio">{{ love.userTo[0].bio }}</view>
       <van-button round type="info" size="mini" bindtap="more" data-userto="{{ love.userTo }}">更多</van-button>
@@ -41,7 +48,7 @@
   <scroll-view scroll-y="true" style="height: 500rpx;">
     <view wx:for="{{ love.comments }}" wx:key="{{ item.id }}" class="comment text-left">
       <view class='comment_cell'>
-          <image mode="scaleToFill" src="{{ app.globalData.url + item.avatar }}" class='comment_avatar' />
+          <image mode="scaleToFill" src="{{ app.globalData.url + item.avatar }}" bindtap="onUser" data-uid="{{ item.uid }}" class='comment_avatar' />
           <view class='comment_right'>
             <view class='comment_nickname'>{{ item.nickname }}</view>
             <view class='comment_content'>{{ item.content }}</view>

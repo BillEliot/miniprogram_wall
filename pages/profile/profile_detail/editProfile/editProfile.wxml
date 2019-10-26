@@ -8,6 +8,7 @@
     show-toolbar
     title="选择班级"
     columns="{{ columns_classes }}"
+    bind:change="onChange_Classes"
     bind:cancel="onClose_Classes"
     bind:confirm="onConfirm_Classes"
   />

@@ -16,6 +16,12 @@ Page({
     show_date: false
   },
 
+  submit: function () {
+    app.globalData.Dialog.alert({
+      message: '请使用PC访问http://www.hnucmwall.top以获取更好的写作体验！'
+    })
+  },
+
   onHelp: function (e) {
     wx.navigateTo({
       url: '/pages/wall/help/help_detail/help_detail?id=' + e.currentTarget.dataset.id

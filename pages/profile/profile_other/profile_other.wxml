@@ -1,0 +1,24 @@
+<view>
+  <van-cell
+    is-link
+    value="详细信息"
+    url="{{ '/pages/profile/profile_other/profile_other_detail/profile_other_detail?nickname=' + profile.nickname + '&bio=' + profile.bio + '&auth=' + profile.auth + '&email=' + profile.email + '&phone=' + profile.phone + '&qq=' + profile.qq + '&wechat=' + profile.wechat + '&gender=' + profile.gender + '&class=' + profile.class + '&coin=' + profile.coin }}"
+  >
+    <view slot="title">
+      <image mode="aspectFit" class="avatar" src="{{ app.globalData.url + profile.avatar }}"></image>
+      <view class="base">
+        <view class="base-nickname">{{ profile.nickname }}</view>
+        <view class="base-bio">{{ profile.bio }}</view>
+        <view>
+          <van-tag wx:for="{{ profile.auth }}" wx:key="*this" type="primary" class="tag">{{ item }}</van-tag>
+        </view>
+      </view>
+    </view>
+  </van-cell>
+  <van-cell-group title="TA的">
+    <van-cell title="TA的表白" is-link icon="like-o" url="{{ '/pages/profile/love/love?loves=' + str_loves }}" />
+    <van-cell title="TA的失物" is-link icon="point-gift-o" url="{{ '/pages/profile/lose/lose?loses=' + str_loses }}" />
+    <van-cell title="TA的二手物品" is-link icon="bag-o" url="{{ '/pages/profile/deal/deal?deals=' + str_deals }}" />
+    <van-cell title="TA的求助" is-link icon="thumb-circle-o" url="{{ '/pages/profile/help/help?helps=' + str_helps }}" />
+  </van-cell-group>
+</view>

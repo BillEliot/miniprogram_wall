@@ -5,6 +5,7 @@ Page({
    * Page initial data
    */
   data: {
+    avatar: '',
     nickname: '',
     bio: '',
     auth: '',
@@ -12,6 +13,7 @@ Page({
     phone: '',
     qq: '',
     wechat: '',
+    gender: '',
     class: '',
     coin: '',
   },
@@ -32,11 +34,48 @@ Page({
     })
   },
 
+  previewAvatar: function () {
+    wx.previewImage({
+      urls: [this.data.avatar],
+    })
+  },
+  changeAvatar: function () {
+    let _this = this
+    wx.chooseImage({
+      count: 1,
+      sourceType: ['album'],
+      success: function(res) {
+        let avatarPath = res.tempFilePaths[0]
+        wx.uploadFile({
+          url: app.globalData.url + '/api/uploadAvatar',
+          header: {
+            'content-type': 'multipart/form-data'
+          },
+          filePath: res.tempFilePaths[0],
+          name: 'avatar',
+          formData: {
+            'uid': app.globalData.user.uid
+          },
+          success(res) {
+            if (res.data == 0) {
+              app.globalData.Toast.success('修改头像成功')
+              _this.setData({ avatar: avatarPath })
+            }
+            else {
+              app.globalData.Toast.fail('修改头像失败')
+            }
+          }
+        })
+      },
+    })
+  },
+
   /**
    * Lifecycle function--Called when page load
    */
   onLoad: function (options) {
     this.setData({
+      avatar: app.globalData.url + options.avatar,
       nickname: options.nickname,
       bio: options.bio,
       auth: options.auth,
@@ -44,6 +83,7 @@ Page({
       phone: options.phone,
       qq: options.qq,
       wechat: options.wechat,
+      gender: options.gender,
       class: options.class,
       coin: options.coin
     })

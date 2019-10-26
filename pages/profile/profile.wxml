@@ -1,3 +1,4 @@
+<van-dialog id="van-dialog" />
 <view wx:if="{{ !isLogin }}" class="container">
   <van-button plain type="info" size="large" bindtap="register">注册</van-button>
   <van-button plain type="default" size="large" bindtap="login_web">使用官网账号登录</van-button>
@@ -6,7 +7,7 @@
   <van-cell
     is-link
     value="详细信息"
-    url="{{ '/pages/profile/profile_detail/profile_detail?nickname=' + profile.nickname + '&bio=' + profile.bio + '&auth=' + profile.auth + '&email=' + profile.email + '&phone=' + profile.phone + '&qq=' + profile.qq + '&wechat=' + profile.wechat + '&class=' + profile.class + '&coin=' + profile.coin }}"
+    url="{{ '/pages/profile/profile_detail/profile_detail?avatar=' + profile.avatar + '&nickname=' + profile.nickname + '&bio=' + profile.bio + '&auth=' + profile.auth + '&email=' + profile.email + '&phone=' + profile.phone + '&qq=' + profile.qq + '&wechat=' + profile.wechat + '&gender=' + profile.gender + '&class=' + profile.class + '&coin=' + profile.coin }}"
   >
     <view slot="title">
       <image mode="aspectFit" class="avatar" src="{{ app.globalData.url + profile.avatar }}"></image>
@@ -27,10 +28,8 @@
     <van-cell title="TA的求助" is-link icon="thumb-circle-o" url="{{ '/pages/profile/help/help?helps=' + str_helps }}" />
   </van-cell-group>
   <van-cell-group title="其他">
-    <van-cell title="题库(Beta)" is-link icon="gem-o" url="{{ '/pages/profile/comment/comment?comments=' + str_comments }}" />
-    <van-cell title="校园团体" is-link icon="cluster-o" url="{{ '/pages/profile/love/love?loves=' + str_loves }}" />
-    <van-cell title="新生指南" is-link icon="medel-o" url="{{ '/pages/profile/lose/lose?loses=' + str_loses }}" />
+    <van-cell title="题库(Beta)" clickable icon="gem-o" bindtap="onBank" />
+    <van-cell title="校园团体(Beta)" clickable icon="cluster-o" bindtap="onClub" />
+    <van-cell title="新生指南(Beta)" clickable icon="medel-o" bindtap="onNew" />
   </van-cell-group>
-  <van-button square size="large">关于</van-button>
-  <van-button square type="danger" size="large" bindtap="logoff">注销</van-button>
 </view>

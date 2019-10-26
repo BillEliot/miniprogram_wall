@@ -59,6 +59,14 @@ Page({
     }
   },
 
+  onUser: function (e) {
+    if (e.target.dataset.uid != -1) {
+      wx.navigateTo({
+        url: '/pages/profile/profile_other/profile_other?uid=' + e.target.dataset.uid,
+      })
+    }
+  },
+
   /**
    * Lifecycle function--Called when page load
    */

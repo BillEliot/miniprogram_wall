@@ -9,7 +9,7 @@
 </view>
 
 <view class="container text-center">
-  <image mode="scaleToFill" src="{{ app.globalData.url + article.user.avatar }}" class="avatar" />
+  <image mode="scaleToFill" src="{{ app.globalData.url + article.user.avatar }}" bindtap="onUser" data-uid="{{ article.user.uid }}" class="avatar" />
   <view>{{ article.user.nickname }}</view>
   <van-tag wx:for="{{ article.user.auth }}" wx:key="*this" type="primary" class="tag">{{ item }}</van-tag>
   <view class="bio">{{ article.user.bio }}</view>
@@ -24,7 +24,7 @@
   <scroll-view scroll-y="true" style="height: 500rpx;">
     <view wx:for="{{ article.comments }}" wx:key="{{ item.id }}" class="comment text-left">
       <view class='comment_cell'>
-          <image mode="scaleToFill" src="{{ app.globalData.url + item.avatar }}" class='comment_avatar' />
+          <image mode="scaleToFill" src="{{ app.globalData.url + item.avatar }}" bindtap="onUser" data-uid="{{ item.uid }}" class='comment_avatar' />
           <view class='comment_right'>
             <view class='comment_nickname'>{{ item.nickname }}</view>
             <view class='comment_content'>{{ item.content }}</view>

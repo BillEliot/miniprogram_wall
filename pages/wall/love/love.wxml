@@ -1,3 +1,4 @@
+<van-dialog id="van-dialog" />
  <!-- date -->
  <van-popup show="{{ show_date }}" position="bottom" bind:close="flipPicker_date">
   <van-picker
@@ -19,7 +20,7 @@
 
 <van-popup show="{{ show_more }}" position="right" bind:close="onClose_more">
   <view wx:for="{{ moreList }}" wx:key="{{ item.uid }}" class="text-center">
-    <image mode="aspectFit" src="{{ app.globalData.url + item.avatar }}" class="avatar" />
+    <image mode="aspectFit" src="{{ app.globalData.url + item.avatar }}" bindtap="onUser" data-uid="{{ item.uid }}" class="avatar" />
     <view class="nickname">{{ item.nickname }}</view>
     <view class="bio">{{ item.bio }}</view>
   </view>
@@ -30,7 +31,7 @@
   <view class="warpper-title">
     <view class="warpper-head">表白墙</view>
     <view class="warpper-subhead">ヾ(≧O≦)〃嗷~</view>
-    <van-button round type="info" size="small">我要表白</van-button>
+    <van-button round type="info" size="small" bindtap="submit">我要表白</van-button>
   </view>
 </view>
 <van-divider hairline />
@@ -62,7 +63,7 @@
     <view wx:for="{{ loveList }}" wx:for-index="index" wx:key="{{ item.id }}" class="text-center">
       <view style="height: 200rpx;">
         <view class="user-left">
-          <image mode="aspectFit" src="{{ app.globalData.url + item.userFrom_avatar }}" class="avatar" />
+          <image mode="aspectFit" src="{{ app.globalData.url + item.userFrom_avatar }}" bindtap="onUser" data-uid="{{ item.userFrom_uid }}" class="avatar" />
           <view class="nickname">{{ item.userFrom_nickname }}</view>
           <view class="bio">{{ item.userFrom_bio }}</view>
         </view>
@@ -72,7 +73,7 @@
           <view class="bio">{{ item.userTo[0].bio }}</view>
         </view>
         <view wx:else class="user-right">
-          <image mode="aspectFit" src="{{ app.globalData.url + item.userTo[0].avatar }}" class="avatar" />
+          <image mode="aspectFit" src="{{ app.globalData.url + item.userTo[0].avatar }}" bindtap="onUser" data-uid="{{ item.userTo[0].uid }}" class="avatar" />
           <view class="nickname">{{ item.userTo[0].nickname }}</view>
           <view class="bio">{{ item.userTo[0].bio }}</view>
           <van-button round type="info" size="mini" bindtap="more" data-userto="{{ item.userTo }}">更多</van-button>

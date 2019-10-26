@@ -1,12 +1,17 @@
 <van-dialog id="van-dialog" />
+<van-toast id="van-toast" />
 <van-popup
   show="{{ show_classes }}"
   position="bottom"
   bind:close="onClose_Classes"
 >
   <van-picker
+    show-toolbar
+    title="选择班级"
     columns="{{ columns_classes }}"
     bind:change="onChange_Classes"
+    bind:cancel="onClose_Classes"
+    bind:confirm="onConfirm_Classes"
   />
 </van-popup>
 <van-popup
@@ -15,8 +20,11 @@
   bind:close="onClose_Gender"
 >
   <van-picker
+    show-toolbar
+    title="选择性别"
     columns="{{ columns_gender }}"
-    bind:change="onChange_Gender"
+    bind:cancel="onClose_Gender"
+    bind:confirm="onConfirm_Gender"
   />
 </van-popup>
 <view class="container">
@@ -72,22 +80,24 @@
       value="{{ gender.value }}"
       label="性别"
       placeholder="请输入性别"
-      bind:focus="OnFocus_Gender"
       error="{{ gender.error }}"
       error-message="{{ gender.error_message }}"
       required
-      bind:change="onChange_gender"
-    />
+      readonly
+    >
+      <van-button slot="button" size="small" bindtap="OnFocus_Gender">选择</van-button>
+    </van-field>
     <van-field
       value="{{ class.value }}"
       label="班级"
       placeholder="请选择班级"
-      bind:focus="OnFocus_Classes"
       error="{{ class.error }}"
       error-message="{{ class.error_message }}"
       required
-      bind:change="onChange_class"
-    />
+      readonly
+    >
+      <van-button slot="button" size="small" bindtap="OnFocus_Classes">选择</van-button>
+    </van-field>
     <van-field
       value="{{ phone.value }}"
       label="手机"

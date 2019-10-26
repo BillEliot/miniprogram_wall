@@ -1,4 +1,8 @@
 const app = getApp()
+const classes = {
+  '中医学院': ['五年制一班', '五年制二班', '五年制三班', '五年制四班', '五年制五班', '五年制六班', '五年制七班'],
+  '福建': ['福州', '厦门', '莆田', '三明', '泉州']
+}
 
 Page({
 
@@ -8,6 +12,14 @@ Page({
   data: {
     show_classes: false,
     show_gender: false,
+    columns_classes: [{
+      values: Object.keys(classes),
+      className: 'column1'
+    }, {
+      values: classes['中医学院'],
+      className: 'column2',
+      defaultIndex: 2
+    }],
     columns_gender: ['男', '女'],
     nickname: {
       value: '',
@@ -49,11 +61,14 @@ Page({
   onClose_Classes() {
     this.setData({ show_classes: false })
   },
-  onConfirm_Classes(event) {
+  onChange_Classes(event) {
     const { picker, value, index } = event.detail
     picker.setColumnValues(1, classes[value[0]])
+  },
+  onConfirm_Classes(event) {
+    const { value, index } = event.detail
     this.setData({ 
-      'class.value': event.detail.value[0] + '/' + event.detail.value[1],
+      'class.value': value[0] + '/' + value[1],
       show_classes: false
     })
   },
@@ -161,6 +176,7 @@ Page({
           nickname: this.data.nickname.value,
           bio: this.data.bio.value,
           class: this.data.class.value,
+          gender: this.data.gender.value,
           phone: this.data.phone.value,
           qq: this.data.qq.value,
           wechat: this.data.wechat
@@ -168,7 +184,7 @@ Page({
         success: function (res) {
           if (res.data == 0) {
             app.globalData.Toast.success('修改成功')
-            wx.navigateBack({})
+            wx.navigateBack({ delta: 2 })
           }
           else {
             app.globalData.Toast.fail('未知错误')

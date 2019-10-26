@@ -28,5 +28,5 @@ App({
     user: null,
     Dialog: Dialog,
     Toast: Toast
-  }
+  },
 })
