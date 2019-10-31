@@ -3,7 +3,7 @@
     size="large"
     wx:for="{{ comments }}"
     wx:for-index="index"
-    wx:key="{{ imdex }}"
+    wx:key="{{ index }}"
     value="{{ item.content }}"
     label="{{ item.date }}"
   >

@@ -1,0 +1,31 @@
+<van-cell-group>
+  <van-cell
+    size="large"
+    wx:for="{{ messageList }}"
+    wx:for-index="index"
+    wx:key="{{ index }}"
+    label="{{ item.date }}"
+  >
+    <view slot="title">
+      <image mode="aspectFit" class="avatar" src="{{ app.globalData.url + item.user.avatar }}"></image>
+      <view wx:if="{{ item.messageType == 'thumbsUp' }}" class="base">
+        <text class="base-nickname">{{ item.user.nickname }}</text>
+        <text>给你点赞了在</text>
+        <text wx:if="{{ item.messageFrom == 'love' }}" class="base-nickname message-from" bindtap="onLove" data-id="{{ item.messageID }}">表白墙</text>
+        <text wx:elif="{{ item.messageFrom == 'lose' }}" class="base-nickname message-from" bindtap="onLose" data-id="{{ item.messageID }}">失物墙</text>
+        <text wx:elif="{{ item.messageFrom == 'deal' }}" class="base-nickname message-from" bindtap="onDeal" data-id="{{ item.messageID }}">二手交易</text>
+        <text wx:elif="{{ item.messageFrom == 'help' }}" class="base-nickname message-from" bindtap="onHelp" data-id="{{ item.messageID }}">求助墙</text>
+        <text wx:elif="{{ item.messageFrom == 'article' }}" class="base-nickname message-from" bindtap="onArticle" data-id="{{ item.messageID }}">大佬杂谈</text>
+      </view>
+      <view wx:elif="{{ item.messageType == 'comment' }}" class="base">
+        <text class="base-nickname">{{ item.user.nickname }}</text>
+        <text>评论了你在</text>
+        <text wx:if="{{ item.messageFrom == 'love' }}" class="base-nickname message-from" bindtap="onLove" data-id="{{ item.messageID }}">表白墙</text>
+        <text wx:elif="{{ item.messageFrom == 'lose' }}" class="base-nickname message-from" bindtap="onLose" data-id="{{ item.messageID }}">失物墙</text>
+        <text wx:elif="{{ item.messageFrom == 'deal' }}" class="base-nickname message-from" bindtap="onDeal" data-id="{{ item.messageID }}">二手交易</text>
+        <text wx:elif="{{ item.messageFrom == 'help' }}" class="base-nickname message-from" bindtap="onHelp" data-id="{{ item.messageID }}">求助墙</text>
+        <text wx:elif="{{ item.messageFrom == 'article' }}" class="base-nickname message-from" bindtap="onArticle" data-id="{{ item.messageID }}">大佬杂谈</text>
+      </view>
+    </view>
+  </van-cell>
+</van-cell-group>

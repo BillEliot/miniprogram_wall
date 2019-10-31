@@ -2,5 +2,7 @@
   <van-tabbar-item icon="home-o">大佬杂谈</van-tabbar-item>
   <van-tabbar-item icon="medel-o">墙墙</van-tabbar-item>
   <van-tabbar-item icon="shop-o">校园动态</van-tabbar-item>
+  <!--<van-tabbar-item wx:if="{{ app.globalData.user.unreadCount == 0 }}" icon="user-o">我</van-tabbar-item>
+  <van-tabbar-item wx:else icon="user-o" info="{{ app.globalData.user.unreadCount }}">我</van-tabbar-item>-->
   <van-tabbar-item icon="user-o">我</van-tabbar-item>
 </van-tabbar>

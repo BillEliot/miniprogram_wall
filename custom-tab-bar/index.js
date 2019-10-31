@@ -1,6 +1,8 @@
-// custom-tab-bar/index.js
+const app = getApp()
+
 Component({
   data: {
+    app: app,
     selected: 0,
     list: [{
       pagePath: "/pages/article/article",
@@ -17,7 +19,8 @@ Component({
     {
       "pagePath": "/pages/profile/profile",
       "text": "我"
-    }]
+    }],
+    unreadCount: 0
   },
 
   methods: {
@@ -27,6 +30,10 @@ Component({
         selected: e.detail
       })
       wx.switchTab({ url })
+    }
+  },
+  lifetimes: {
+    attached: function () {
     }
   }
 })

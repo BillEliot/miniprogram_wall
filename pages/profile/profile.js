@@ -13,7 +13,8 @@ Page({
     str_loves: [],
     str_loses: [],
     str_deals: [],
-    str_helps: []
+    str_helps: [],
+    unreadCount: 0
   },
 
   register: function () {
@@ -25,6 +26,13 @@ Page({
     wx.navigateTo({
       url: '/pages/profile/login_web/login_web',
     })
+  },
+
+  onMessage: function () {
+    wx.navigateTo({
+      url: '/pages/profile/message/message'
+    })
+    this.setData({ unreadCount: 0 })
   },
 
   onBank: function () {
@@ -46,7 +54,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({ unreadCount: app.globalData.user.unreadCount })
   },
 
   /**

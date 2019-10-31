@@ -27,7 +27,8 @@
     "pages/profile/profile_detail/editProfile/editProfile",
     "pages/profile/profile_detail/changePassword/changePassword",
     "pages/profile/profile_other/profile_other",
-    "pages/profile/profile_other/profile_other_detail/profile_other_detail"
+    "pages/profile/profile_other/profile_other_detail/profile_other_detail",
+    "pages/profile/message/message"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -58,23 +59,21 @@
   },
   "tabBar": {
     "custom": true,
-    "list": [
-      {
-        "pagePath": "pages/article/article",
-        "text": "大佬杂谈"
-      },
-      {
-        "pagePath": "pages/wall/wall",
-        "text": "墙墙"
-      },
-      {
-        "pagePath": "pages/school/school",
-        "text": "校园动态"
-      },
-      {
-        "pagePath": "pages/profile/profile",
-        "text": "我"
-      }
-    ]
+    "list": [{
+      "pagePath": "pages/article/article",
+      "text": "大佬杂谈"
+    },
+    {
+      "pagePath": "pages/wall/wall",
+      "text": "墙墙"
+    },
+    {
+      "pagePath": "pages/school/school",
+      "text": "校园动态"
+    },
+    {
+      "pagePath": "pages/profile/profile",
+      "text": "我"
+    }]
   }
 }

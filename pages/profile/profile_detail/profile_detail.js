@@ -54,7 +54,8 @@ Page({
           filePath: res.tempFilePaths[0],
           name: 'avatar',
           formData: {
-            'uid': app.globalData.user.uid
+            uid: app.globalData.user.uid,
+            platform: 'wx'
           },
           success(res) {
             if (res.data == 0) {

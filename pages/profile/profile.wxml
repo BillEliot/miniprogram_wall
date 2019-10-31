@@ -21,6 +21,7 @@
     </view>
   </van-cell>
   <van-cell-group title="TA的">
+    <van-cell title="{{ '我的消息(' + unreadCount + ')' }}" is-link icon="chat-o" bindtap="onMessage" />
     <van-cell title="留言板" is-link icon="coupon-o" url="{{ '/pages/profile/comment/comment?comments=' + str_comments }}" />
     <van-cell title="TA的表白" is-link icon="like-o" url="{{ '/pages/profile/love/love?loves=' + str_loves }}" />
     <van-cell title="TA的失物" is-link icon="point-gift-o" url="{{ '/pages/profile/lose/lose?loses=' + str_loses }}" />

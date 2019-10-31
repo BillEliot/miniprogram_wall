@@ -27,6 +27,6 @@ App({
     url: 'http://localhost:8000',
     user: null,
     Dialog: Dialog,
-    Toast: Toast
+    Toast: Toast,
   },
 })
